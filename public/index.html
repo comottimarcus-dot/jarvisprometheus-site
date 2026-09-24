@@ -700,6 +700,216 @@
 
     </section>
 
+
+    <section class="lifecycle-v16" id="capability-lifecycle">
+
+      <div class="lifecycle-v16-heading">
+
+        <div>
+          <span class="section-eyebrow">
+            GOVERNED CAPABILITY LIFECYCLE
+          </span>
+
+          <h2>
+            Capabilities are not trusted<br>
+            <span>because they can execute.</span>
+          </h2>
+        </div>
+
+        <div class="lifecycle-v16-intro">
+          <span>CAPABILITY ACQUISITION / TRUST PIPELINE</span>
+
+          <p>
+            PROMETHEUS X6 separates technical execution from authorization.
+            New capabilities move through discovery, isolation, testing,
+            evidence collection and an explicit governance decision before
+            trust can change.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="lifecycle-v16-system">
+
+        <div class="lifecycle-v16-origin">
+
+          <div class="lifecycle-v16-origin-mark">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+          <div>
+            <small>UNMET EXECUTION REQUIREMENT</small>
+            <strong>CAPABILITY GAP</strong>
+          </div>
+
+          <span>ENTRY POINT</span>
+
+        </div>
+
+        <div class="lifecycle-v16-ingress" aria-hidden="true">
+          <i></i>
+        </div>
+
+        <div class="lifecycle-v16-pipeline">
+
+          <article class="lifecycle-v16-stage">
+            <span>01</span>
+            <small>SEARCH SPACE</small>
+            <h3>DISCOVER</h3>
+            <p>
+              Identify candidate capabilities that may satisfy the
+              missing execution requirement.
+            </p>
+          </article>
+
+          <div class="lifecycle-v16-link" aria-hidden="true">
+            <i></i>
+          </div>
+
+          <article class="lifecycle-v16-stage">
+            <span>02</span>
+            <small>EXECUTION CONTRACT</small>
+            <h3>CONTRACT</h3>
+            <p>
+              Define expected inputs, outputs, boundaries and the
+              conditions under which evaluation may occur.
+            </p>
+          </article>
+
+          <div class="lifecycle-v16-link" aria-hidden="true">
+            <i></i>
+          </div>
+
+          <article class="lifecycle-v16-stage lifecycle-v16-stage-isolated">
+            <span>03</span>
+            <small>UNTRUSTED STATE</small>
+            <h3>QUARANTINE</h3>
+            <p>
+              Keep the candidate outside trusted execution while its
+              behavior and resource boundaries remain unproven.
+            </p>
+          </article>
+
+          <div class="lifecycle-v16-link" aria-hidden="true">
+            <i></i>
+          </div>
+
+          <article class="lifecycle-v16-stage">
+            <span>04</span>
+            <small>CONTROLLED EXECUTION</small>
+            <h3>TEST</h3>
+            <p>
+              Execute under constrained conditions without granting
+              the candidate authority over its own trust state.
+            </p>
+          </article>
+
+          <div class="lifecycle-v16-link" aria-hidden="true">
+            <i></i>
+          </div>
+
+          <article class="lifecycle-v16-stage lifecycle-v16-stage-evidence">
+            <span>05</span>
+            <small>INSPECTABLE OUTPUT</small>
+            <h3>EVIDENCE</h3>
+            <p>
+              Preserve execution result, behavior and relevant
+              verification material for governance.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="lifecycle-v16-decision-link" aria-hidden="true">
+          <i></i>
+        </div>
+
+        <div class="lifecycle-v16-decision">
+
+          <div class="lifecycle-v16-decision-copy">
+            <small>06 / GOVERNANCE CONTROL POINT</small>
+            <strong>DECISION</strong>
+            <span>
+              Evidence informs authorization. Execution does not.
+            </span>
+          </div>
+
+          <div class="lifecycle-v16-outcomes">
+
+            <div class="lifecycle-v16-outcome lifecycle-v16-outcome-reject">
+              <small>OUTCOME</small>
+              <strong>REJECT</strong>
+              <span>Candidate remains untrusted</span>
+            </div>
+
+            <div class="lifecycle-v16-outcome lifecycle-v16-outcome-retest">
+              <small>OUTCOME</small>
+              <strong>RETEST</strong>
+              <span>Return for controlled evaluation</span>
+            </div>
+
+            <div class="lifecycle-v16-outcome lifecycle-v16-outcome-approve">
+              <small>OUTCOME</small>
+              <strong>APPROVE</strong>
+              <span>Trust state may advance</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="lifecycle-v16-approved-link" aria-hidden="true">
+          <i></i>
+        </div>
+
+        <div class="lifecycle-v16-approved">
+
+          <div>
+            <small>AUTHORIZED EXECUTION STATE</small>
+            <strong>GOVERNED CAPABILITY</strong>
+          </div>
+
+          <span>
+            POLICY CONTROLLED
+          </span>
+
+        </div>
+
+        <div class="lifecycle-v16-separation">
+
+          <div class="lifecycle-v16-separation-side">
+            <small>EXECUTION RESULT</small>
+            <strong>SUCCESS</strong>
+          </div>
+
+          <div class="lifecycle-v16-not-equal" aria-label="does not imply">
+            ≠
+          </div>
+
+          <div class="lifecycle-v16-separation-side">
+            <small>GOVERNANCE DECISION</small>
+            <strong>APPROVED</strong>
+          </div>
+
+        </div>
+
+        <div class="lifecycle-v16-rule">
+
+          <span>TRUST INVARIANT</span>
+
+          <p>
+            A capability cannot grant trust to itself.
+            Evidence returns to governance before authorization changes.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
   <footer class="site-footer">
     <div>
       <strong>JARVIS / PROMETHEUS X6</strong>
