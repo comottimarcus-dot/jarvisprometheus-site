@@ -1120,6 +1120,148 @@
       </div>
     </section>
 
+  <section class="routing-v18" id="adaptive-routing">
+    <div class="routing-v18-heading">
+      <div>
+        <span class="section-eyebrow">ADAPTIVE EXECUTION ROUTING</span>
+        <h2>
+          Execution follows fitness.<br>
+          <span>Not a fixed machine.</span>
+        </h2>
+      </div>
+
+      <p>
+        PROMETHEUS X6 evaluates eligible execution paths against capability
+        requirements, policy, availability and workload fitness before
+        controlled dispatch.
+      </p>
+    </div>
+
+    <div class="routing-v18-plane">
+      <header class="routing-v18-plane-head">
+        <div>
+          <small>GOVERNED OBJECTIVE</small>
+          <strong>EXECUTION PATH RESOLUTION</strong>
+        </div>
+        <span>CONTROL PLANE</span>
+      </header>
+
+      <div class="routing-v18-objective">
+        <small>01 / EXECUTION REQUIREMENTS</small>
+        <strong>OBJECTIVE BOUND</strong>
+        <span>CAPABILITY REQUIREMENTS</span>
+      </div>
+
+      <div class="routing-v18-path-space">
+        <div class="routing-v18-path-space-head">
+          <small>02 / CANDIDATE TARGETS</small>
+          <strong>ELIGIBLE EXECUTION PATHS</strong>
+          <span>MULTIPLE DOMAINS</span>
+        </div>
+
+        <div class="routing-v18-paths">
+          <div class="routing-v18-path">
+            <small>LOCAL</small>
+            <strong>CPU</strong>
+            <span>GENERAL COMPUTE</span>
+          </div>
+
+          <div class="routing-v18-path">
+            <small>ACCELERATED</small>
+            <strong>NVIDIA / CUDA</strong>
+            <span>GPU COMPUTE</span>
+          </div>
+
+          <div class="routing-v18-path">
+            <small>ACCELERATED</small>
+            <strong>AMD / ROCm</strong>
+            <span>GPU COMPUTE</span>
+          </div>
+
+          <div class="routing-v18-path">
+            <small>DISTRIBUTED</small>
+            <strong>EDGE NODE</strong>
+            <span>PHYSICAL SYSTEM</span>
+          </div>
+
+          <div class="routing-v18-path">
+            <small>ELASTIC</small>
+            <strong>REMOTE / CLOUD</strong>
+            <span>REMOTE CAPACITY</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="routing-v18-evaluation">
+        <div class="routing-v18-evaluation-title">
+          <small>03 / GOVERNED EVALUATION</small>
+          <strong>FITNESS EVALUATION</strong>
+        </div>
+
+        <div class="routing-v18-factors">
+          <span>CAPABILITY</span>
+          <span>POLICY</span>
+          <span>AVAILABILITY</span>
+          <span>WORKLOAD</span>
+        </div>
+      </div>
+
+      <div class="routing-v18-decision">
+        <div>
+          <small>04 / CONTROL POINT</small>
+          <strong>PATH DECISION</strong>
+          <p>
+            An eligible execution target is selected according to the
+            governed objective and current execution conditions.
+          </p>
+        </div>
+        <span>SELECT</span>
+      </div>
+
+      <div class="routing-v18-dispatch">
+        <small>05 / SELECTED EXECUTION TARGET</small>
+        <strong>CONTROLLED DISPATCH</strong>
+        <span>GOVERNED PATH</span>
+      </div>
+
+      <div class="routing-v18-recheck">
+        <div>
+          <small>EXECUTION CONDITIONS</small>
+          <strong>CONDITIONS CHANGE</strong>
+        </div>
+
+        <span aria-hidden="true">→</span>
+
+        <div>
+          <small>FITNESS</small>
+          <strong>RE-EVALUATE</strong>
+        </div>
+
+        <span aria-hidden="true">→</span>
+
+        <div>
+          <small>CONTROL</small>
+          <strong>GOVERNANCE</strong>
+        </div>
+
+        <span aria-hidden="true">→</span>
+
+        <div>
+          <small>OUTCOME</small>
+          <strong>PATH DECISION</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="routing-v18-rule">
+      <span>ROUTING INVARIANT</span>
+      <p>
+        Execution remains bound to the governed objective rather than to
+        a fixed machine.
+      </p>
+    </div>
+  </section>
+
   <footer class="site-footer">
     <div>
       <strong>JARVIS / PROMETHEUS X6</strong>
