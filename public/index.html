@@ -1701,6 +1701,134 @@
 
   </section>
 
+
+  <section class="coherence-v22" id="execution-coherence">
+    <div class="coherence-v22-heading">
+      <div>
+        <span class="section-kicker">GOVERNED EXECUTION COHERENCE</span>
+        <h2>The selected path and the executing target remain coherent.</h2>
+        <p>
+          PROMETHEUS X6 carries a governed path decision into a routing
+          resolution that preserves the selected candidate and identifies
+          the executor expected to perform the work.
+        </p>
+      </div>
+
+      <div class="coherence-v22-contract">
+        <small>EXECUTION CONTRACT</small>
+        <strong>PATH → EXECUTOR</strong>
+        <span>MISMATCH DOES NOT EXECUTE</span>
+      </div>
+    </div>
+
+    <div class="coherence-v22-plane">
+      <header class="coherence-v22-plane-head">
+        <div>
+          <small>V2.2 / EXECUTION INTEGRITY</small>
+          <strong>COHERENCE PLANE</strong>
+        </div>
+        <span>ROUTE BOUND</span>
+      </header>
+
+      <div class="coherence-v22-flow">
+        <div class="coherence-v22-node coherence-v22-origin">
+          <small>01 / DECISION</small>
+          <strong>GOVERNED PATH DECISION</strong>
+          <span>Selected execution path</span>
+        </div>
+
+        <div class="coherence-v22-link" aria-hidden="true">→</div>
+
+        <div class="coherence-v22-node">
+          <small>02 / RESOLUTION</small>
+          <strong>ROUTING RESOLUTION</strong>
+          <span>Effective route resolved</span>
+        </div>
+
+        <div class="coherence-v22-link" aria-hidden="true">→</div>
+
+        <div class="coherence-v22-node">
+          <small>03 / CANDIDATE</small>
+          <strong>SELECTED CANDIDATE</strong>
+          <span>Identity preserved</span>
+        </div>
+
+        <div class="coherence-v22-link" aria-hidden="true">→</div>
+
+        <div class="coherence-v22-node coherence-v22-expected">
+          <small>04 / EXECUTOR</small>
+          <strong>EXPECTED EXECUTOR</strong>
+          <span>Executor identity bound</span>
+        </div>
+      </div>
+
+      <div class="coherence-v22-check">
+        <div class="coherence-v22-check-head">
+          <small>05 / COHERENCE GATE</small>
+          <strong>EXPECTED EXECUTOR ↔ DISPATCHED EXECUTOR</strong>
+        </div>
+
+        <div class="coherence-v22-check-paths">
+          <div class="coherence-v22-match">
+            <span class="coherence-v22-state">MATCH</span>
+            <strong>COHERENT</strong>
+            <small>Dispatch may continue</small>
+          </div>
+
+          <div class="coherence-v22-mismatch">
+            <span class="coherence-v22-state">MISMATCH</span>
+            <strong>NO EXECUTION</strong>
+            <small>No handler runs</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="coherence-v22-execution">
+        <div class="coherence-v22-node">
+          <small>06 / DISPATCH</small>
+          <strong>CONTROLLED DISPATCH</strong>
+          <span>Resolved executor</span>
+        </div>
+
+        <div class="coherence-v22-link" aria-hidden="true">→</div>
+
+        <div class="coherence-v22-node coherence-v22-physical">
+          <small>07 / RUNTIME</small>
+          <strong>PHYSICAL EXECUTION</strong>
+          <span>Registered handler</span>
+        </div>
+
+        <div class="coherence-v22-link" aria-hidden="true">→</div>
+
+        <div class="coherence-v22-node">
+          <small>08 / RESULT</small>
+          <strong>EXECUTION RESULT</strong>
+          <span>Executor identity preserved</span>
+        </div>
+      </div>
+
+      <div class="coherence-v22-boundary">
+        <small>LAYER BOUNDARY</small>
+        <span>
+          This coherence layer performs the selected execution attempt.
+          Retry, failover and recovery remain separate governed concerns.
+        </span>
+      </div>
+    </div>
+
+    <div class="coherence-v22-invariant">
+      <div>
+        <small>COHERENCE INVARIANT</small>
+        <strong>MISMATCH ≠ EXECUTION</strong>
+      </div>
+
+      <p>
+        The selected execution path and the executor that performs the work
+        must remain coherent. A mismatched executor does not execute.
+      </p>
+    </div>
+  </section>
+
   <footer class="site-footer">
     <div>
       <strong>JARVIS / PROMETHEUS X6</strong>
