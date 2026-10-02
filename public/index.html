@@ -1829,6 +1829,121 @@
     </div>
   </section>
 
+  <section class="recovery-v23" id="governed-recovery">
+    <div class="recovery-v23-heading">
+      <span class="section-kicker">CONTROLLED FAILURE PROGRESSION</span>
+      <h2>GOVERNED RECOVERY &amp; CONTINUITY</h2>
+
+      <p>
+        Execution failure does not imply unrestricted repetition.
+        Recovery progresses only while failure semantics, retry capacity
+        and candidate eligibility permit another governed execution attempt.
+      </p>
+    </div>
+
+    <div class="recovery-v23-flow" aria-label="Governed recovery flow">
+      <div class="recovery-v23-node">
+        <small>01</small>
+        <strong>EXECUTION FAILURE</strong>
+        <span>Observe the failed execution outcome.</span>
+      </div>
+
+      <div class="recovery-v23-arrow" aria-hidden="true">→</div>
+
+      <div class="recovery-v23-node">
+        <small>02</small>
+        <strong>RETRYABILITY</strong>
+        <span>Determine whether failure semantics permit progression.</span>
+      </div>
+
+      <div class="recovery-v23-arrow" aria-hidden="true">→</div>
+
+      <div class="recovery-v23-node">
+        <small>03</small>
+        <strong>RECOVERY CAPACITY</strong>
+        <span>Remain bounded by the configured attempt capacity.</span>
+      </div>
+
+      <div class="recovery-v23-arrow" aria-hidden="true">→</div>
+
+      <div class="recovery-v23-node">
+        <small>04</small>
+        <strong>HEALTH ELIGIBILITY</strong>
+        <span>Exclude candidates without availability evidence.</span>
+      </div>
+
+      <div class="recovery-v23-arrow" aria-hidden="true">→</div>
+
+      <div class="recovery-v23-node">
+        <small>05</small>
+        <strong>NEXT CANDIDATE</strong>
+        <span>Advance through the ordered eligible candidate set.</span>
+      </div>
+
+      <div class="recovery-v23-arrow" aria-hidden="true">→</div>
+
+      <div class="recovery-v23-node">
+        <small>06</small>
+        <strong>ROUTE EVOLUTION</strong>
+        <span>Move execution to the next explicit recovery route.</span>
+      </div>
+
+      <div class="recovery-v23-arrow" aria-hidden="true">→</div>
+
+      <div class="recovery-v23-node">
+        <small>07</small>
+        <strong>COHERENT EXECUTION</strong>
+        <span>Execute through the selected route and matching executor.</span>
+      </div>
+
+      <div class="recovery-v23-arrow" aria-hidden="true">→</div>
+
+      <div class="recovery-v23-node">
+        <small>08</small>
+        <strong>TERMINAL OUTCOME</strong>
+        <span>Stop on success or when governed progression is exhausted.</span>
+      </div>
+    </div>
+
+    <div class="recovery-v23-decision">
+      <div class="recovery-v23-decision-head">
+        <small>RECOVERY DECISION CONTRACT</small>
+        <strong>PROGRESSION IS CONDITIONAL</strong>
+      </div>
+
+      <div class="recovery-v23-states">
+        <span>SUCCESS → STOP</span>
+        <span>NON-RETRYABLE → STOP</span>
+        <span>NO ELIGIBLE CANDIDATE → STOP</span>
+        <span>MAX ATTEMPTS → STOP</span>
+        <span>CANDIDATES EXHAUSTED → STOP</span>
+        <span>RETRYABLE + CAPACITY → MAY PROGRESS</span>
+      </div>
+    </div>
+
+    <div class="recovery-v23-invariants">
+      <div>
+        <small>RECOVERY INVARIANT</small>
+        <strong>ONLY RETRYABLE FAILURE MAY PROGRESS</strong>
+      </div>
+
+      <p>
+        Each routed candidate executes at most once during progression.
+        Success terminates recovery, missing eligibility evidence excludes
+        a candidate, and the sequence remains bounded by maximum attempts.
+      </p>
+    </div>
+
+    <div class="recovery-v23-boundary">
+      <span>BOUNDARY</span>
+      <p>
+        Recovery changes the eligible execution path after a retryable
+        failure. It does not bypass execution coherence, create unrestricted
+        retries, imply physical redundancy or grant execution authority.
+      </p>
+    </div>
+  </section>
+
   <footer class="site-footer">
     <div>
       <strong>JARVIS / PROMETHEUS X6</strong>
