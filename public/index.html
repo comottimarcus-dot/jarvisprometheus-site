@@ -1944,6 +1944,154 @@
     </div>
   </section>
 
+  <section class="distributed-runtime-v24" id="distributed-runtime">
+    <div class="distributed-runtime-v24-heading">
+      <span class="section-kicker">HETEROGENEOUS PHYSICAL EXECUTION</span>
+      <h2>DISTRIBUTED EXECUTION RUNTIME</h2>
+
+      <p>
+        PROMETHEUS X6 maps capability demand into explicit execution identities,
+        routes and executors. Physical work occurs only when the selected path
+        has a matching physical binding.
+      </p>
+    </div>
+
+    <div class="distributed-runtime-v24-flow"
+         aria-label="Distributed execution runtime flow">
+      <div class="distributed-runtime-v24-node">
+        <small>01</small>
+        <strong>CAPABILITY DEMAND</strong>
+        <span>Define the capability required by the governed execution path.</span>
+      </div>
+
+      <div class="distributed-runtime-v24-arrow" aria-hidden="true">→</div>
+
+      <div class="distributed-runtime-v24-node">
+        <small>02</small>
+        <strong>FLEET PRESENCE</strong>
+        <span>Expose capability membership without granting execution authority.</span>
+      </div>
+
+      <div class="distributed-runtime-v24-arrow" aria-hidden="true">→</div>
+
+      <div class="distributed-runtime-v24-node">
+        <small>03</small>
+        <strong>X6 IDENTITY</strong>
+        <span>Bind the node and capability to an explicit X6 execution identity.</span>
+      </div>
+
+      <div class="distributed-runtime-v24-arrow" aria-hidden="true">→</div>
+
+      <div class="distributed-runtime-v24-node">
+        <small>04</small>
+        <strong>ELIGIBLE CANDIDATE</strong>
+        <span>Materialize an explicit candidate for governed selection.</span>
+      </div>
+
+      <div class="distributed-runtime-v24-arrow" aria-hidden="true">→</div>
+
+      <div class="distributed-runtime-v24-node">
+        <small>05</small>
+        <strong>ROUTE</strong>
+        <span>Resolve the explicit execution route.</span>
+      </div>
+
+      <div class="distributed-runtime-v24-arrow" aria-hidden="true">→</div>
+
+      <div class="distributed-runtime-v24-node">
+        <small>06</small>
+        <strong>EXECUTOR</strong>
+        <span>Require the executor identity associated with the selected route.</span>
+      </div>
+
+      <div class="distributed-runtime-v24-arrow" aria-hidden="true">→</div>
+
+      <div class="distributed-runtime-v24-node">
+        <small>07</small>
+        <strong>PHYSICAL BINDING</strong>
+        <span>Connect the executor identity to an explicit physical handler.</span>
+      </div>
+
+      <div class="distributed-runtime-v24-arrow" aria-hidden="true">→</div>
+
+      <div class="distributed-runtime-v24-node">
+        <small>08</small>
+        <strong>EXECUTION NODE</strong>
+        <span>Perform work on the bound physical execution backend.</span>
+      </div>
+
+      <div class="distributed-runtime-v24-arrow" aria-hidden="true">→</div>
+
+      <div class="distributed-runtime-v24-node">
+        <small>09</small>
+        <strong>RESULT</strong>
+        <span>Return the physical execution outcome through the governed runtime.</span>
+      </div>
+    </div>
+
+    <div class="distributed-runtime-v24-paths">
+      <article class="distributed-runtime-v24-path">
+        <div class="distributed-runtime-v24-path-head">
+          <small>PHYSICALLY DEMONSTRATED</small>
+          <strong>NVIDIA EXECUTION PATH</strong>
+        </div>
+
+        <div class="distributed-runtime-v24-path-chain">
+          <span>PROMETHEUS X6</span>
+          <i>→</i>
+          <span>jarvis-z800-br</span>
+          <i>→</i>
+          <span>z800-comfyui</span>
+          <i>→</i>
+          <span>HTTP /prompt</span>
+          <i>→</i>
+          <span>GTX 1660 SUPER</span>
+        </div>
+      </article>
+
+      <article class="distributed-runtime-v24-path">
+        <div class="distributed-runtime-v24-path-head">
+          <small>PHYSICALLY DEMONSTRATED</small>
+          <strong>AMD EXECUTION PATH</strong>
+        </div>
+
+        <div class="distributed-runtime-v24-path-chain">
+          <span>PROMETHEUS X6</span>
+          <i>→</i>
+          <span>amd-mi300x-reasoning</span>
+          <i>→</i>
+          <span>amd-mi300x-vllm</span>
+          <i>→</i>
+          <span>vLLM</span>
+          <i>→</i>
+          <span>MI300X / Qwen3-8B</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="distributed-runtime-v24-invariants">
+      <div>
+        <small>DISTRIBUTED RUNTIME INVARIANT</small>
+        <strong>DISCOVERY ≠ EXECUTION AUTHORITY</strong>
+      </div>
+
+      <p>
+        Fleet presence is not execution. Structural identity is not physical
+        execution. Physical execution requires an explicit binding between the
+        governed executor identity and its physical handler.
+      </p>
+    </div>
+
+    <div class="distributed-runtime-v24-boundary">
+      <span>BOUNDARY</span>
+      <p>
+        Execution backends remain execution backends. They do not become
+        orchestrators, selection authorities or independent X6 governance
+        authorities merely by joining the distributed execution fabric.
+      </p>
+    </div>
+  </section>
+
   <footer class="site-footer">
     <div>
       <strong>JARVIS / PROMETHEUS X6</strong>
