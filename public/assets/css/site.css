@@ -7922,3 +7922,36 @@ main {
   }
 }
 
+
+
+/* ============================================================
+   POST-V2.4 — RECOVERY DECISION HEADER ALIGNMENT FIX
+   Restores the intended hierarchy inside the V2.3 decision head.
+   ============================================================ */
+
+.recovery-v23-decision-head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 22px;
+}
+
+.recovery-v23-decision-head small {
+  color: var(--accent);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+}
+
+.recovery-v23-decision-head strong {
+  font-size: 0.94rem;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 620px) {
+  .recovery-v23-decision-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
