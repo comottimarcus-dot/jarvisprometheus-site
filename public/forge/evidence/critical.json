@@ -1,0 +1,201 @@
+{
+  "captured_at": "2026-10-13T19:39:49.132829+00:00",
+  "assessment": {
+    "checks": {
+      "contract": true,
+      "successful_execution": true,
+      "amd_route": true,
+      "completion_reference": true,
+      "model_reference": true,
+      "sample_reference": true,
+      "severity": true,
+      "gate": true,
+      "no_actuation": true,
+      "recommendations": true,
+      "scope": true
+    },
+    "backend_evidence_pass": true,
+    "scope": "historical_sample",
+    "voice_input_verified": false,
+    "acoustic_return_verified": false,
+    "full_golden_run_complete": false,
+    "limitation": "Backend evidence uses existing executor assertions; voice and acoustic evidence require separate correlated recording."
+  },
+  "result": {
+    "schema_version": "forge.result.v1",
+    "asset_id": "P-204",
+    "simulated": true,
+    "availability": "fresh",
+    "historical": true,
+    "current_state_claim": false,
+    "ok": true,
+    "operation": "forge_check_asset",
+    "request_id": "bcda17a6-102f-4508-984f-c71c116dc0f3",
+    "executed_now": true,
+    "response": "Análise histórica de uma amostra simulada da bomba P-204, classificada como critical. O estado atual não está confirmado. Recomendações atuais bloqueadas. Nenhuma ação física foi autorizada ou executada.",
+    "scope": "historical_sample",
+    "sample_reference": {
+      "boot_id": "8aa49120-48fd-4cbe-b6ef-a560f7727d25",
+      "sequence": 9650,
+      "sample_sha256": "30274046b996f1a28928b59ce787cec6adf05c292767d56d7d0bec9dd6649cef",
+      "received_at": "2026-10-13T19:39:40.085680+00:00",
+      "age_at_admission_ms": 527.1905210101977
+    },
+    "severity": "critical",
+    "policy_version": "forge.demo.pump.v1",
+    "triggered_rules": [
+      {
+        "rule_id": "temperature_c.critical",
+        "signal": "temperature_c",
+        "value": 96,
+        "severity": "critical",
+        "comparison": "gte",
+        "threshold": 90
+      },
+      {
+        "rule_id": "temperature_c.warning",
+        "signal": "temperature_c",
+        "value": 96,
+        "severity": "warning",
+        "comparison": "gte",
+        "threshold": 75
+      },
+      {
+        "rule_id": "vibration_rms_mm_s.critical",
+        "signal": "vibration_rms_mm_s",
+        "value": 9.2,
+        "severity": "critical",
+        "comparison": "gte",
+        "threshold": 7
+      },
+      {
+        "rule_id": "vibration_rms_mm_s.warning",
+        "signal": "vibration_rms_mm_s",
+        "value": 9.2,
+        "severity": "warning",
+        "comparison": "gte",
+        "threshold": 4
+      },
+      {
+        "rule_id": "pressure_bar.critical",
+        "signal": "pressure_bar",
+        "value": 4.2,
+        "severity": "critical",
+        "comparison": "lt",
+        "threshold": 4.5
+      },
+      {
+        "rule_id": "pressure_bar.warning",
+        "signal": "pressure_bar",
+        "value": 4.2,
+        "severity": "warning",
+        "comparison": "lt",
+        "threshold": 5.8
+      },
+      {
+        "rule_id": "motor_current_a.critical",
+        "signal": "motor_current_a",
+        "value": 18.3,
+        "severity": "critical",
+        "comparison": "gte",
+        "threshold": 17
+      },
+      {
+        "rule_id": "motor_current_a.warning",
+        "signal": "motor_current_a",
+        "value": 18.3,
+        "severity": "warning",
+        "comparison": "gte",
+        "threshold": 14
+      },
+      {
+        "rule_id": "rpm.critical",
+        "signal": "rpm",
+        "value": 1390,
+        "severity": "critical",
+        "comparison": "lt",
+        "threshold": 1400
+      },
+      {
+        "rule_id": "rpm.warning",
+        "signal": "rpm",
+        "value": 1390,
+        "severity": "warning",
+        "comparison": "lt",
+        "threshold": 1475
+      },
+      {
+        "rule_id": "maintenance_overdue_hours.critical",
+        "signal": "maintenance_overdue_hours",
+        "value": 173,
+        "severity": "critical",
+        "comparison": "gte",
+        "threshold": 168
+      },
+      {
+        "rule_id": "maintenance_overdue_hours.warning",
+        "signal": "maintenance_overdue_hours",
+        "value": 173,
+        "severity": "warning",
+        "comparison": "gt",
+        "threshold": 0
+      }
+    ],
+    "funding": {
+      "credit_campaign": "academy",
+      "project": "forge-act3",
+      "allocation_id": "FORGE-ACADEMY-418de8f1-4629-49d4-96ac-4bb857144518",
+      "operator_declared": true
+    },
+    "reasoning": {
+      "schema_version": "forge.reviewed-reasoning.v1",
+      "recommended_checks": [],
+      "model_prose_published": false
+    },
+    "elapsed_seconds": 8.466,
+    "execution": {
+      "executor_id": "amd-mi300x-vllm",
+      "route_key": "amd-mi300x-reasoning",
+      "model": "Qwen/Qwen3-32B",
+      "node": "AMD-608786419-ATL1",
+      "gpu": "1 x AMD Instinct MI300X VF",
+      "backend": "ROCm 7.2.53211 / vLLM 0.27.1+rocm723",
+      "completion_id": "chatcmpl-a73b48a740342886",
+      "usage": {
+        "prompt_tokens": 864,
+        "total_tokens": 1338,
+        "completion_tokens": 474,
+        "prompt_tokens_details": null
+      },
+      "hardware_evidence": "deployment_inventory",
+      "inventory_observed_at": "2026-10-13T18:48:13.536597Z"
+    },
+    "governance": {
+      "policy_version": "forge.gate.v1",
+      "mode": "recommendation_only",
+      "gate_result": "blocked",
+      "human_review_required": true,
+      "physical_actuation_authorized": false,
+      "physical_actuation_performed": false,
+      "model_prose_published": false
+    },
+    "instruction": "Report only this result; no automatic retry, no pump shutdown claim. Historical scope is not current state.",
+    "thought_id": "forge-bcda17a6-102f-4508-984f-c71c116dc0f3",
+    "executions": [
+      {
+        "capability": "reasoning",
+        "provider": "amd-vllm",
+        "route_key": "amd-mi300x-reasoning",
+        "executor_id": "amd-mi300x-vllm",
+        "node": "AMD-608786419-ATL1",
+        "gpu": "1 x AMD Instinct MI300X VF",
+        "backend": "ROCm 7.2.53211 / vLLM 0.27.1+rocm723",
+        "model": "Qwen/Qwen3-32B",
+        "hardware_evidence": "deployment_inventory",
+        "inventory_observed_at": "2026-10-13T18:48:13.536597Z",
+        "success": true,
+        "operations": []
+      }
+    ]
+  }
+}

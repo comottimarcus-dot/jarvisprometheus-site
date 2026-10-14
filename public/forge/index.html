@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROMETHEUS FORGE — Governed industrial intelligence</title>
+  <meta name="description" content="Watch a physical pump simulator, Xiaozhi voice and governed Qwen3-32B inference on AMD MI300X. Inspect the recorded prototype, presentation and execution evidence.">
+  <meta name="theme-color" content="#080f15">
+  <meta property="og:title" content="PROMETHEUS FORGE — Industrial signals. Answers you can inspect.">
+  <meta property="og:description" content="A recorded industrial prototype combining physical edge telemetry, voice, AMD MI300X inference and human-review boundaries.">
+  <meta property="og:image" content="https://jarvisprometheus.space/forge/cover.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jarvisprometheus.space/forge/">
+  <link rel="canonical" href="https://jarvisprometheus.space/forge/">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#demo">Skip to demonstration</a>
+  <header class="wrap"><a class="brand" href="/">PROMETHEUS <span>/ FORGE</span></a><nav class="top-links" aria-label="Related projects"><a class="back" href="/voice/">Explore Voice ↗</a><a class="back" href="source.zip" download>Download source ↗</a></nav></header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="title">
+      <p class="eyebrow">AMD DEVELOPER HACKATHON · ACT III · INTELLIGENT INDUSTRY</p>
+      <h1 id="title">Industrial signals.<br><span>Answers you can inspect.</span></h1>
+      <p class="lead">A physical edge node simulates an industrial pump. Ask for its status by voice, request analysis on AMD MI300X, and review the result through an explicit governance gate.</p>
+      <div class="actions"><a class="button primary" href="#demo">Watch the demo <span aria-hidden="true">↓</span></a><a class="button" href="presentation.pdf">Read the presentation · PDF</a></div>
+      <p class="hero-caption">For operators and maintenance technicians who need understandable machine context and an auditable path from request to result.</p>
+    </section>
+    <section id="demo" class="demo" aria-labelledby="demo-title">
+      <div class="section-head"><h2 id="demo-title">See the physical prototype in action</h2><span class="badge">RECORDED DEMO · 4:29</span></div>
+      <video controls playsinline preload="metadata" poster="cover.png" aria-label="PROMETHEUS FORGE recorded demonstration with synchronized desktop and physical devices">
+        <source src="demo.mp4" type="video/mp4">
+        <p>Your browser cannot play this video. <a href="demo.mp4">Download the demo</a>.</p>
+      </video>
+      <p class="note">Recorded on 13 October 2026. The screen and bench camera are synchronized; the voice is recorded from the physical device. This page presents a working local prototype, not a live machine-control service. <a href="demo.mp4" download>Download video</a>.</p>
+    </section>
+    <section class="proof" aria-label="Demonstrated industrial workflow">
+      <article><p class="number">01 / EDGE SIGNALS</p><h2>One pump. Three states.</h2><p>An ESP32-C3 with a display emulates pump P-204. A physical button selects NORMAL, WARNING or CRITICAL. The node sends explicitly simulated temperature, vibration, pressure, motor current, speed and maintenance signals to the Core.</p></article>
+      <article><p class="number">02 / EXPLICIT AMD ANALYSIS</p><h2>Ask for analysis.</h2><p>A status check reads local telemetry without GPU inference. A separate analysis request reaches Qwen3-32B on one AMD Instinct MI300X through the existing X6 runtime, dispatcher and executor.</p></article>
+      <article><p class="number">03 / HUMAN REVIEW</p><h2>Keep the scope honest.</h2><p>Local rules determine severity. The model reviews the supplied signal context, and the gate accepts only bounded inspection checks. If newer samples arrive during inference, the result is historical and current recommendations are blocked.</p></article>
+    </section>
+    <section class="architecture" aria-labelledby="architecture-title">
+      <p class="eyebrow">HOW IT CONNECTS</p><h2 id="architecture-title">The device speaks. The Core governs.</h2>
+      <div class="flow"><span>Voice &amp; edge telemetry</span><b aria-hidden="true">→</b><span>Bounded Core tools</span><b aria-hidden="true">→</b><span>X6 / AMD analysis</span><b aria-hidden="true">→</b><span>Governed voice reply</span></div>
+      <p>The C3 publishes authenticated MQTT telemetry. Xiaozhi uses the existing AssemblyAI bridge to call Core tools. Only explicit analysis requests use AMD; local status reads remain local. Firmware holds no cloud credentials and never chooses a GPU or contacts vLLM directly.</p>
+    </section>
+    <section class="evidence-block" aria-labelledby="evidence-title">
+      <div class="section-head"><h2 id="evidence-title">Recorded execution, inspectable evidence.</h2><a class="back" href="evidence/index.json">Open evidence index ↗</a></div>
+      <p class="note">The following are two separate captured backend runs, not timing measurements of the video above.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Captured AMD backend runs"><table><caption>Qwen3-32B · one MI300X · explicit X6 route</caption><thead><tr><th scope="col">Scenario</th><th scope="col">Service interval</th><th scope="col">Result scope</th><th scope="col">Original capture</th></tr></thead><tbody><tr><th scope="row"><span class="scenario warning">WARNING</span></th><td>6.128 s</td><td>Historical sample</td><td><a href="evidence/warning.json">View JSON ↗</a></td></tr><tr><th scope="row"><span class="scenario critical">CRITICAL</span></th><td>8.466 s</td><td>Historical sample</td><td><a href="evidence/critical.json">View JSON ↗</a></td></tr></tbody></table></div>
+      <p class="note">These are individual service observations, not a benchmark or a measured reduction in downtime. Node and GPU identity come from a verified deployment inventory, not a hardware measurement per request.</p>
+      <details><summary>What the voice evidence establishes</summary><p>Core results, bridge playback start and audio-submission completion are correlated by actual request and thought IDs. The operator also confirmed hearing the complete English response on the Xiaozhi. That declaration is distinct from a firmware playback-completion acknowledgement. The original captures retain their original test language.</p><p><a href="evidence/voice-listening.json">Inspect the listening declaration ↗</a> · <a href="evidence/voice-trace.json">Inspect the correlated voice trace ↗</a></p></details>
+    </section>
+    <section class="details" aria-label="Prototype value and boundaries">
+      <article><h2>Built for a technician's next question.</h2><p>Machine alerts can leave operators switching between screens and context. FORGE offers a spoken view of a pump's condition and a separate, traceable request for model review.</p><p>The prototype validates the integration and its response boundaries. A future plant pilot would measure investigation time, operator comprehension and maintenance outcomes; no such improvement is claimed from this bench demonstration.</p></article>
+      <article><h2>A test rig with explicit limits.</h2><p>All pump signals are simulated. Demo thresholds are not certified industrial operating limits. There is no physical actuation path, autonomous GPU selection, demonstrated physical failover or eight-GPU execution.</p><p>FORGE adds the industrial contracts, C3 emulator, ingest, governance gate and evidence capture. Core/X6 and the voice transport are pre-existing components. The source bundle documents that boundary and the dependencies needed for live reproduction.</p></article>
+    </section>
+    <section class="commands" aria-labelledby="commands-title"><p class="eyebrow">IN THE RECORDED PROTOTYPE</p><h2 id="commands-title">Two requests. Two execution paths.</h2><div class="command-grid"><article><span class="badge">LOCAL TELEMETRY · NO AMD INFERENCE</span><blockquote>“Jarvis, check pump P-204 in English.”</blockquote></article><article><span class="badge">EXPLICIT GOVERNED AMD ANALYSIS</span><blockquote>“Jarvis, analyze pump P-204 in English.”</blockquote></article></div><p class="note">English playback reuses the existing English voice-session switch. This public page does not accept spoken commands or remotely control the bench.</p></section>
+    <nav class="resources" aria-label="Project materials"><a href="presentation.pdf">Pitch presentation · PDF ↗</a><a href="source.zip" download>FORGE source bundle ↗</a><a href="evidence/index.json">Evidence index ↗</a><a href="reproduction.md">Reproduction guide ↗</a></nav>
+  </main>
+  <footer class="wrap"><strong>PROMETHEUS FORGE</strong><span>Built by Marcus Comotti · Hackathon prototype · October 2026</span><a href="/">Explore PROMETHEUS X6 ↗</a></footer>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "captured_at": "2026-10-13T20:01:42.464750+00:00",
+  "request_id_filter": "cc005145-9d71-42d9-b1d3-d73af4a69e5c",
+  "logs": [
+    {
+      "journal_timestamp_us": "1791921403685083",
+      "message": "FORGE Core result: session=ba1672ec68b8452fb9b076c727db3785 call_id=chatcmpl-tool-8601cc94fbb02edb request_id=cc005145-9d71-42d9-b1d3-d73af4a69e5c thought_id=forge-cc005145-9d71-42d9-b1d3-d73af4a69e5c operation=forge_check_asset ok=True scope=historical_sample"
+    },
+    {
+      "journal_timestamp_us": "1791921404761879",
+      "message": "FORGE playback started: request_id=cc005145-9d71-42d9-b1d3-d73af4a69e5c thought_id=forge-cc005145-9d71-42d9-b1d3-d73af4a69e5c session=ba1672ec68b8452fb9b076c727db3785; submission evidence only"
+    },
+    {
+      "journal_timestamp_us": "1791921418542467",
+      "message": "FORGE playback submitted completely: request_id=cc005145-9d71-42d9-b1d3-d73af4a69e5c thought_id=forge-cc005145-9d71-42d9-b1d3-d73af4a69e5c session=ba1672ec68b8452fb9b076c727db3785; speaker completion not instrumented"
+    }
+  ],
+  "operator_listening_confirmed": true,
+  "operator_reported_response": null,
+  "response_transcription_available": false,
+  "listening_confirmation_source": "explicit_operator_flag",
+  "firmware_playback_ack_verified": false,
+  "audio_recording_attached": false,
+  "limitation": "Journal messages show bridge submission only. Listening is an explicit operator attestation, not an instrumented firmware ACK."
+}

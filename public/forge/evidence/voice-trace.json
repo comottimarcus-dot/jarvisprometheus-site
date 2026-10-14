@@ -1,0 +1,47 @@
+{
+  "captured_at": "2026-10-13T19:59:14.164509+00:00",
+  "request_id_filter": null,
+  "logs": [
+    {
+      "journal_timestamp_us": "1791921345652275",
+      "message": "FORGE Core result: session=ba1672ec68b8452fb9b076c727db3785 call_id=chatcmpl-tool-b418ab709bde9e91 request_id=23002569-8229-470e-bd47-835463de9b66 thought_id=forge-23002569-8229-470e-bd47-835463de9b66 operation=forge_asset_status ok=True scope=local_telemetry_status"
+    },
+    {
+      "journal_timestamp_us": "1791921345819755",
+      "message": "FORGE playback started: request_id=23002569-8229-470e-bd47-835463de9b66 thought_id=forge-23002569-8229-470e-bd47-835463de9b66 session=ba1672ec68b8452fb9b076c727db3785; submission evidence only"
+    },
+    {
+      "journal_timestamp_us": "1791921360074432",
+      "message": "FORGE playback submitted completely: request_id=23002569-8229-470e-bd47-835463de9b66 thought_id=forge-23002569-8229-470e-bd47-835463de9b66 session=ba1672ec68b8452fb9b076c727db3785; speaker completion not instrumented"
+    },
+    {
+      "journal_timestamp_us": "1791921373924610",
+      "message": "FORGE Core result: session=ba1672ec68b8452fb9b076c727db3785 call_id=chatcmpl-tool-885243768651eeec request_id=e2dff0e4-7a80-4998-92a1-fc560471919b thought_id=forge-e2dff0e4-7a80-4998-92a1-fc560471919b operation=forge_check_asset ok=True scope=historical_sample"
+    },
+    {
+      "journal_timestamp_us": "1791921374092832",
+      "message": "FORGE playback started: request_id=e2dff0e4-7a80-4998-92a1-fc560471919b thought_id=forge-e2dff0e4-7a80-4998-92a1-fc560471919b session=ba1672ec68b8452fb9b076c727db3785; submission evidence only"
+    },
+    {
+      "journal_timestamp_us": "1791921388120377",
+      "message": "FORGE playback submitted completely: request_id=e2dff0e4-7a80-4998-92a1-fc560471919b thought_id=forge-e2dff0e4-7a80-4998-92a1-fc560471919b session=ba1672ec68b8452fb9b076c727db3785; speaker completion not instrumented"
+    },
+    {
+      "journal_timestamp_us": "1791921403685083",
+      "message": "FORGE Core result: session=ba1672ec68b8452fb9b076c727db3785 call_id=chatcmpl-tool-8601cc94fbb02edb request_id=cc005145-9d71-42d9-b1d3-d73af4a69e5c thought_id=forge-cc005145-9d71-42d9-b1d3-d73af4a69e5c operation=forge_check_asset ok=True scope=historical_sample"
+    },
+    {
+      "journal_timestamp_us": "1791921404761879",
+      "message": "FORGE playback started: request_id=cc005145-9d71-42d9-b1d3-d73af4a69e5c thought_id=forge-cc005145-9d71-42d9-b1d3-d73af4a69e5c session=ba1672ec68b8452fb9b076c727db3785; submission evidence only"
+    },
+    {
+      "journal_timestamp_us": "1791921418542467",
+      "message": "FORGE playback submitted completely: request_id=cc005145-9d71-42d9-b1d3-d73af4a69e5c thought_id=forge-cc005145-9d71-42d9-b1d3-d73af4a69e5c session=ba1672ec68b8452fb9b076c727db3785; speaker completion not instrumented"
+    }
+  ],
+  "operator_listening_confirmed": false,
+  "operator_reported_response": null,
+  "firmware_playback_ack_verified": false,
+  "audio_recording_attached": false,
+  "limitation": "Journal messages show bridge submission only. Listening is an explicit operator attestation, not an instrumented firmware ACK."
+}

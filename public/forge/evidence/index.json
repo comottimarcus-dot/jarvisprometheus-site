@@ -1,0 +1,33 @@
+{
+  "recorded_date": "2026-10-13",
+  "scope": "Original captured backend and voice evidence; separate requests, not a merged ID chain.",
+  "artifacts": [
+    {
+      "path": "warning.json",
+      "sha256": "6b3f25897bb1777baa543ae2aad1e753cbb0f06c5fdee9dd72b137125eeee3d5",
+      "source_capture": "FORGE-05_warning_20261013T193759795824Z.json"
+    },
+    {
+      "path": "critical.json",
+      "sha256": "caf3ff2a30107a641addcde33700d35a629cd87628ff4cecab5d056f3a8751c8",
+      "source_capture": "FORGE-05_critical_20261013T193949132785Z.json"
+    },
+    {
+      "path": "voice-listening.json",
+      "sha256": "f28242a32f0d108aaaf5e7dec074e1c7de4cb286c11885ec37777976f988049d",
+      "source_capture": "FORGE-VOICE-20261013T200142464998Z.json"
+    },
+    {
+      "path": "voice-trace.json",
+      "sha256": "4e5768e3bc8dc63f224d26df23cc4c843bfeef0b014cb410b57e784291583c9e",
+      "source_capture": "FORGE-VOICE-20261013T195914164699Z.json"
+    }
+  ],
+  "limits": [
+    "Pump telemetry is simulated.",
+    "Backend timings are separate individual runs, not measurements of this video.",
+    "Hardware identity is deployment inventory, not per-call measurement.",
+    "Listening confirmation is human-declared; no firmware playback ACK.",
+    "Original records retain their original test language."
+  ]
+}
