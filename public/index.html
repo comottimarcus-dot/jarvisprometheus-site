@@ -2092,6 +2092,48 @@
     </div>
   </section>
 
+  <section class="evidence-v24e-home" id="verified-physical-execution"
+           aria-labelledby="evidence-v24e-home-title">
+    <div class="evidence-v24e-home-heading">
+      <span class="section-kicker">FROZEN EXECUTION RECORDS</span>
+      <h2 id="evidence-v24e-home-title">VERIFIED PHYSICAL EXECUTION</h2>
+      <p>Inspect preserved evidence of demonstrated PROMETHEUS X6 execution
+        across AMD and NVIDIA backends. These records document completed runs;
+        they are not a live availability check or a new physical validation.</p>
+    </div>
+
+    <div class="evidence-v24e-home-grid">
+      <article class="evidence-v24e-home-card">
+        <small>AMD EXECUTION RECORD</small>
+        <h3>AMD INSTINCT MI300X</h3>
+        <p class="evidence-v24e-home-backend">vLLM / Qwen3-8B</p>
+        <p>Governed execution through <code>amd-mi300x-reasoning</code>
+          and executor <code>amd-mi300x-vllm</code>.</p>
+        <span class="evidence-v24e-home-result">RECORDED RESULT · HTTP 200 / succeeded</span>
+      </article>
+
+      <article class="evidence-v24e-home-card">
+        <small>NVIDIA EXECUTION RECORD</small>
+        <h3>NVIDIA GTX 1660 SUPER</h3>
+        <p class="evidence-v24e-home-backend">ComfyUI / HTTP /prompt</p>
+        <p>Governed execution through <code>jarvis-z800-br</code>
+          and executor <code>z800-comfyui</code>.</p>
+        <span class="evidence-v24e-home-result">RECORDED RESULT · Completed / image produced</span>
+      </article>
+    </div>
+
+    <div class="evidence-v24e-home-boundary">
+      <strong>EVIDENCE INFORMS GOVERNANCE. IT DOES NOT GRANT EXECUTION AUTHORITY.</strong>
+      <p>Fleet presence alone is not physical execution. Every execution requires
+        an explicit governed path and a matching physical binding. Execution
+        backends do not become independent governance authorities.</p>
+    </div>
+
+    <a class="button button-secondary evidence-v24e-home-link" href="/evidence/">
+      EXPLORE EXECUTION EVIDENCE <span aria-hidden="true">→</span>
+    </a>
+  </section>
+
   <footer class="site-footer">
     <div>
       <strong>JARVIS / PROMETHEUS X6</strong>

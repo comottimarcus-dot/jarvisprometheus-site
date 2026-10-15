@@ -1,0 +1,49 @@
+PROMETHEUS X6 — PUBLIC EXECUTION EVIDENCE RECORD
+================================================
+
+PLATFORM
+AMD Instinct MI300X
+
+EVIDENCE STATUS
+X6_PHYSICAL_E2E=GREEN
+
+EXECUTION CONTRACT
+executor_id=amd-mi300x-vllm
+route_key=amd-mi300x-reasoning
+target=remote
+capability=reasoning
+
+PHYSICAL EXECUTION
+transport_calls=1
+http_status=200
+attempt_status=succeeded
+accepted=true
+physical_execution=true
+
+MODEL
+Qwen/Qwen3-8B
+
+RESULT
+content=391
+finish_reason=stop
+error=null
+
+PROVENANCE
+This public record is derived from a frozen private execution
+evidence artifact produced on 2026-09-22.
+
+The private original contains infrastructure-specific information
+and is not published verbatim.
+
+ORIGINAL PRIVATE ARTIFACT SHA256
+e6f5b8512b6fb5de8d8dbbbe5d814d8b3d9ef0a66989c681a22300c18c373ab3
+
+IMPORTANT
+The SHA256 above authenticates the frozen private original artifact.
+It is not the SHA256 of this public derived record.
+
+CONCLUSION
+PROMETHEUS X6 delivered a governed workload through the
+amd-mi300x-vllm execution path to an AMD MI300X-backed vLLM
+runtime. The physical execution completed successfully and
+returned a model result.

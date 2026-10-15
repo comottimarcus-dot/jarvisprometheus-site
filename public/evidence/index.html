@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+        content="Verifiable physical execution evidence for PROMETHEUS X6 across AMD and NVIDIA execution backends.">
+  <title>Execution Evidence | JARVIS / PROMETHEUS X6</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+</head>
+
+<body>
+  <main class="evidence-v24e">
+    <header class="evidence-v24e-heading">
+      <span class="section-kicker">VERIFIABLE EXECUTION RECORDS</span>
+      <h1>PHYSICAL EXECUTION EVIDENCE</h1>
+
+      <p>
+        Frozen execution evidence supporting demonstrated PROMETHEUS X6
+        physical execution across heterogeneous AMD and NVIDIA backends.
+      </p>
+
+      <a class="button button-secondary" href="/">
+        ← RETURN TO ARCHITECTURE
+      </a>
+    </header>
+
+    <section class="evidence-v24e-summary">
+      <small>VERIFICATION PRINCIPLE</small>
+      <strong>EVIDENCE, NOT ASSERTION</strong>
+
+      <p>
+        Public records preserve the execution facts required for verification
+        while infrastructure-specific information remains private. Original
+        frozen artifacts are identified by their SHA-256 digests.
+      </p>
+    </section>
+
+    <section class="evidence-v24e-grid">
+      <article class="evidence-v24e-card">
+        <small>AMD PHYSICAL EXECUTION</small>
+        <h2>AMD INSTINCT MI300X</h2>
+
+        <p class="evidence-v24e-status">X6_PHYSICAL_E2E = GREEN</p>
+
+        <dl>
+          <dt>Executor</dt>
+          <dd>amd-mi300x-vllm</dd>
+
+          <dt>Route</dt>
+          <dd>amd-mi300x-reasoning</dd>
+
+          <dt>Backend</dt>
+          <dd>vLLM / Qwen3-8B</dd>
+
+          <dt>Physical result</dt>
+          <dd>HTTP 200 · succeeded</dd>
+        </dl>
+
+        <p class="evidence-v24e-hash">
+          <small>ORIGINAL PRIVATE ARTIFACT SHA-256</small>
+          <code>e6f5b8512b6fb5de8d8dbbbe5d814d8b3d9ef0a66989c681a22300c18c373ab3</code>
+        </p>
+
+        <a class="button button-secondary"
+           href="/evidence/amd-mi300x-physical-execution.txt">
+          VIEW PUBLIC RECORD
+        </a>
+      </article>
+
+      <article class="evidence-v24e-card">
+        <small>NVIDIA PHYSICAL EXECUTION</small>
+        <h2>NVIDIA GTX 1660 SUPER</h2>
+
+        <p class="evidence-v24e-status">STAGE 5C.3F = GREEN</p>
+
+        <dl>
+          <dt>Executor</dt>
+          <dd>z800-comfyui</dd>
+
+          <dt>Route</dt>
+          <dd>jarvis-z800-br</dd>
+
+          <dt>Backend</dt>
+          <dd>ComfyUI</dd>
+
+          <dt>Physical result</dt>
+          <dd>Completed · image produced</dd>
+        </dl>
+
+        <p class="evidence-v24e-hash">
+          <small>ORIGINAL PRIVATE CLOSEOUT SHA-256</small>
+          <code>6de00603e4a858551a0dad91360894e48b4aa6a30d37438831a1406091ebfd1b</code>
+        </p>
+
+        <a class="button button-secondary"
+           href="/evidence/nvidia-gtx1660super-physical-execution.txt">
+          VIEW PUBLIC RECORD
+        </a>
+      </article>
+    </section>
+
+    <section class="evidence-v24e-boundary">
+      <small>FAIL-CLOSED EXECUTION BOUNDARY</small>
+      <h2>NO PHYSICAL BINDING → NO CLAIM OF PHYSICAL EXECUTION</h2>
+
+      <p>
+        Fleet presence and structural identity alone do not constitute
+        physical execution. A physical execution claim requires an explicit
+        governed path crossing a bound physical backend boundary.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

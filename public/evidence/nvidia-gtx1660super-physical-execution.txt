@@ -1,0 +1,56 @@
+PROMETHEUS X6 — PUBLIC EXECUTION EVIDENCE RECORD
+================================================
+
+PLATFORM
+NVIDIA GeForce GTX 1660 SUPER
+
+EVIDENCE STATUS
+STAGE_5C3F=GREEN
+
+EXECUTION CONTRACT
+dispatch_target=GPU
+route_key=jarvis-z800-br
+executor_id=z800-comfyui
+
+PHYSICAL EXECUTION
+POST_COUNT=1
+EXECUTOR_STATUS=succeeded
+PHYSICAL_EXECUTION=true
+COMFYUI_STATUS=success
+COMPLETED=true
+OUTPUT_IMAGE_COUNT=1
+
+EXECUTION PATH
+PROMETHEUS X6
+-> ExecutionDirective
+-> ExecutionDispatch
+-> ExecutionExecutor
+-> Z800 ComfyUI handler
+-> Z800ComfyUIClient
+-> physical ComfyUI HTTP boundary
+-> NVIDIA GTX 1660 SUPER
+-> completed output
+
+PROVENANCE
+This public record is derived from the frozen STAGE 5C.3F
+governed ComfyUI physical execution closeout produced on
+2026-09-18.
+
+Infrastructure-local paths and execution identifiers not required
+for public verification are omitted from this derived record.
+
+ORIGINAL PRIVATE CLOSEOUT SHA256
+6de00603e4a858551a0dad91360894e48b4aa6a30d37438831a1406091ebfd1b
+
+FROZEN EVIDENCE MANIFEST SHA256
+29d723dfcbad733b032b7f0d63cdecdb2970020598e762bedb67e897e536629d
+
+IMPORTANT
+The SHA256 values above authenticate the original frozen evidence.
+They are not the SHA256 of this public derived record.
+
+CONCLUSION
+PROMETHEUS X6 delivered one governed GPU workload through the
+z800-comfyui execution path to a physical NVIDIA GTX 1660 SUPER.
+The workload was accepted exactly once, completed successfully,
+and produced one image output.
