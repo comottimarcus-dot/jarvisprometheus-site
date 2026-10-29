@@ -1,0 +1,13 @@
+{
+  "schema_version": "prometheus-playground-public-sandbox-canary-v1",
+  "recorded_at": "2026-10-29T08:22:31-03:00",
+  "result": "GREEN",
+  "decision": "GREEN_ONE_SHOT_SIGNED_CONTAINER_CANARY_EXECUTED_AND_REPLAY_REJECTED",
+  "source_manifest_sha256": "1a69ec491c392394c68495dfa9f509a34a7dda8b831b64baff87cad25e70e464",
+  "immutable_image_digest": "sha256:b7f3d86d6e84fc17718c48bcde1450807faa2d56704205c697b4bd5df7b9e29f",
+  "authorization": {"signature_scheme":"Ed25519","maximum_execution_count":1,"consumed":true,"reusable":false,"private_signer_remote":false},
+  "execution": {"exit_code":0,"timed_out":false,"stdout_bytes":32,"stderr_bytes":0,"expected_stdout_confirmed":true},
+  "replay": {"rejected":true,"error_code":"AUTHORIZATION_REPLAY"},
+  "post_execution": {"health_ok":true,"runtime_ready":true,"canary_process_count":0,"docker_tcp_listener_count":0,"broker_unix_listener_count":1,"prometheus_docker_group":false},
+  "containment": {"network":"none","read_only_rootfs":true,"docker_socket_inside_container":false,"repository_mounted":false,"repository_code_executed":false,"container_auto_removed":true,"public_port_exposed":false}
+}

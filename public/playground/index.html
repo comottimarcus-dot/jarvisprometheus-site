@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PROMETHEUS PLAYGROUND — Discover safely. Execute by proof.</title>
+  <meta name="description" content="See PROMETHEUS inspect open-source capabilities, test one signed canary inside a contained Vultr sandbox and preserve auditable evidence before adoption.">
+  <meta name="theme-color" content="#080f15">
+  <meta property="og:title" content="PROMETHEUS PLAYGROUND — Discover safely. Execute by proof.">
+  <meta property="og:description" content="A governance-first proving ground for agent capability discovery on Vultr.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jarvisprometheus.space/playground/">
+  <link rel="canonical" href="https://jarvisprometheus.space/playground/">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#proof">Skip to verified proof</a>
+  <header class="wrap">
+    <a class="brand" href="/">PROMETHEUS <span>/ PLAYGROUND</span></a>
+    <nav class="top-links" aria-label="Related resources">
+      <a class="back" href="/forge/">Explore Forge ↗</a>
+      <a class="back" href="https://github.com/comottimarcus-dot/jarvisprometheus-site/tree/main/public/playground">View page source ↗</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-labelledby="title">
+      <p class="eyebrow">VULTR AGENT RUSH · GOVERNANCE-FIRST PROTOTYPE</p>
+      <h1 id="title">Let agents explore.<br><span>Keep authority bounded.</span></h1>
+      <p class="lead">PROMETHEUS Playground is a safe proving ground for new open-source capabilities. It can inspect a candidate project, propose a bounded test and run one authorized canary—without turning discovery into permanent authority.</p>
+      <div class="actions">
+        <a class="button primary" href="#proof">Replay the GREEN proof <span aria-hidden="true">↓</span></a>
+        <a class="button" href="#boundary">Inspect the boundary</a>
+      </div>
+      <p class="hero-caption">This page is sanitized evidence playback, not a live execution or remote-control interface.</p>
+    </section>
+
+    <section id="proof" class="demo" aria-labelledby="proof-title">
+      <div class="section-head">
+        <h2 id="proof-title">One signed run. One consumed nonce.</h2>
+        <span class="badge" id="evidence-result">VERIFYING EVIDENCE</span>
+      </div>
+      <div class="terminal" aria-label="Sandbox execution evidence">
+        <ol id="event-stream">
+          <li><span>01</span><p>Loading signed evidence…</p><b>WAIT</b></li>
+        </ol>
+      </div>
+      <div class="metrics" aria-label="Verified canary metrics">
+        <article><span>IMMUTABLE IMAGE</span><strong id="image">—</strong></article>
+        <article><span>NETWORK</span><strong id="network">—</strong></article>
+        <article><span>EXIT CODE</span><strong id="exit-code">—</strong></article>
+        <article><span>LINGERING PROCESSES</span><strong id="processes">—</strong></article>
+      </div>
+      <p class="note">Source evidence manifest: <code id="evidence-hash">—</code></p>
+    </section>
+
+    <section class="proof" aria-label="Demonstrated Playground workflow">
+      <article><p class="number">01 / DISCOVER</p><h2>Open source enters as untrusted.</h2><p>A candidate capability can be inspected and described. Discovery alone grants no runtime authority.</p></article>
+      <article><p class="number">02 / PROVE</p><h2>Run the smallest useful canary.</h2><p>A root-owned broker accepts a signed, one-shot envelope and executes a pinned image inside a bounded profile.</p></article>
+      <article><p class="number">03 / DECIDE</p><h2>Evidence before adoption.</h2><p>Exit status, hashes, containment checks and replay rejection return to a human gate. Adoption remains a separate decision.</p></article>
+    </section>
+
+    <section id="boundary" class="architecture" aria-labelledby="boundary-title">
+      <p class="eyebrow">THE GOVERNED BOUNDARY</p>
+      <h2 id="boundary-title">Discovery is not authority.</h2>
+      <div class="flow"><span>Candidate capability</span><b aria-hidden="true">→</b><span>Local policy</span><b aria-hidden="true">→</b><span>Vultr sandbox</span><b aria-hidden="true">→</b><span>Human adoption gate</span></div>
+      <p>Vultr provides the isolated execution node and serverless inference. PROMETHEUS keeps policy, authorization and the final adoption decision outside the model.</p>
+    </section>
+
+    <section class="evidence-block" aria-labelledby="containment-title">
+      <div class="section-head"><h2 id="containment-title">The safety story is what did not happen.</h2><span class="badge">BLAST RADIUS ZERO</span></div>
+      <div class="containment-grid">
+        <article><span class="status">BLOCKED</span><h3>No unrestricted network</h3><p>The canary ran with container networking set to none.</p></article>
+        <article><span class="status">ABSENT</span><h3>No Docker authority for the agent</h3><p>PROMETHEUS is not in the Docker group. A root-owned broker enforces policy.</p></article>
+        <article><span class="status">REJECTED</span><h3>No reusable authorization</h3><p>The nonce was consumed once; the identical replay returned <code>AUTHORIZATION_REPLAY</code>.</p></article>
+        <article><span class="status">NOT RUN</span><h3>No repository code in this proof</h3><p>The first canary used a pinned BusyBox image. Candidate source execution remains separately governed.</p></article>
+      </div>
+    </section>
+
+    <section class="details" aria-label="Prototype value and limits">
+      <article><h2>Why this matters</h2><p>Most agent demos optimize for what an agent can do. Playground demonstrates how an agent can learn a new capability while keeping the path to execution narrow, reviewable and reversible.</p><p>The business question is simple: can an organization let an agent experiment without silently expanding its authority?</p></article>
+      <article><h2>What this proof establishes</h2><p>A signed one-shot container canary completed on the Vultr node, its exact replay was denied and the post-run audit found no lingering canary process or public Docker listener.</p><p class="note">It does not yet claim automatic GitHub adoption, arbitrary repository execution or production readiness. Those remain behind later gates.</p></article>
+    </section>
+
+    <nav class="resources" aria-label="Project materials">
+      <a href="evidence/sandbox-canary-public-v1.json">Sanitized evidence · JSON ↗</a>
+      <a href="/forge/">PROMETHEUS Forge ↗</a>
+      <a href="/voice/">PROMETHEUS Voice ↗</a>
+    </nav>
+  </main>
+
+  <footer class="wrap"><strong>PROMETHEUS PLAYGROUND</strong><span>Built by Marcus Comotti · Vultr governance-first prototype · October 2026</span><a href="/">Explore PROMETHEUS X6 ↗</a></footer>
+  <script src="app.js" defer></script>
+</body>
+</html>
