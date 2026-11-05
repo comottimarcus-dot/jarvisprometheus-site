@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PROMETHEUS PLAYGROUND — Discover safely. Execute by proof.</title>
-  <meta name="description" content="See PROMETHEUS inspect open-source capabilities, test one signed canary inside a contained Vultr sandbox and preserve auditable evidence before adoption.">
+  <title>PROMETHEUS PLAYGROUND — Discover capabilities. Prove them safely.</title>
+  <meta name="description" content="See PROMETHEUS inspect a repository capability, propose one bounded experiment, execute it inside an isolated Vultr sandbox and preserve evidence without automatic adoption.">
   <meta name="theme-color" content="#080f15">
-  <meta property="og:title" content="PROMETHEUS PLAYGROUND — Discover safely. Execute by proof.">
-  <meta property="og:description" content="A governance-first proving ground for agent capability discovery on Vultr.">
+  <meta property="og:title" content="PROMETHEUS PLAYGROUND — Discover capabilities. Prove them safely.">
+  <meta property="og:description" content="A governance-first proving ground where repository capabilities earn evidence before authority.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jarvisprometheus.space/playground/">
   <link rel="canonical" href="https://jarvisprometheus.space/playground/">
@@ -26,45 +26,69 @@
   <main class="wrap">
     <section class="hero" aria-labelledby="title">
       <p class="eyebrow">VULTR AGENT RUSH · GOVERNANCE-FIRST PROTOTYPE</p>
-      <h1 id="title">Let agents explore.<br><span>Keep authority bounded.</span></h1>
-      <p class="lead">PROMETHEUS Playground is a safe proving ground for new open-source capabilities. It can inspect a candidate project, propose a bounded test and run one authorized canary—without turning discovery into permanent authority.</p>
+      <h1 id="title">Discover capabilities.<br><span>Prove them safely.</span></h1>
+      <p class="lead">PROMETHEUS Playground can inspect repository code, isolate one useful capability and run a purpose-bound experiment on Vultr—without turning discovery into permanent authority.</p>
       <div class="actions">
-        <a class="button primary" href="#proof">Replay the GREEN proof <span aria-hidden="true">↓</span></a>
-        <a class="button" href="#boundary">Inspect the boundary</a>
+        <a class="button primary" href="#proof">Inspect the repository proof <span aria-hidden="true">↓</span></a>
+        <a class="button" href="#workflow">Follow the governed workflow</a>
       </div>
-      <p class="hero-caption">This page is sanitized evidence playback, not a live execution or remote-control interface.</p>
+      <p class="hero-caption">Sanitized evidence playback. No live execution, credential access or remote-control surface is exposed here.</p>
     </section>
 
     <section id="proof" class="demo" aria-labelledby="proof-title">
       <div class="section-head">
-        <h2 id="proof-title">One signed run. One consumed nonce.</h2>
-        <span class="badge" id="evidence-result">VERIFYING EVIDENCE</span>
+        <div><p class="eyebrow proof-label">LATEST PROOF · REPOSITORY CODE</p><h2 id="proof-title">A capability ran. Authority did not expand.</h2></div>
+        <span class="badge" id="purpose-evidence-result" aria-live="polite">VERIFYING EVIDENCE</span>
       </div>
       <div class="terminal" aria-label="Sandbox execution evidence">
-        <ol id="event-stream">
+        <ol id="purpose-event-stream">
           <li><span>01</span><p>Loading signed evidence…</p><b>WAIT</b></li>
         </ol>
       </div>
       <div class="metrics" aria-label="Verified canary metrics">
-        <article><span>IMMUTABLE IMAGE</span><strong id="image">—</strong></article>
-        <article><span>NETWORK</span><strong id="network">—</strong></article>
-        <article><span>EXIT CODE</span><strong id="exit-code">—</strong></article>
-        <article><span>LINGERING PROCESSES</span><strong id="processes">—</strong></article>
+        <article><span>IMMUTABLE IMAGE</span><strong id="purpose-image">—</strong></article>
+        <article><span>NETWORK</span><strong id="purpose-network">—</strong></article>
+        <article><span>EXIT CODE</span><strong id="purpose-exit-code">—</strong></article>
+        <article><span>RUNNING CONTAINERS AFTER</span><strong id="purpose-processes">—</strong></article>
       </div>
-      <p class="note">Source evidence manifest: <code id="evidence-hash">—</code></p>
+      <p class="note">Governed result record: <code id="purpose-evidence-hash">—</code></p>
+      <p class="proof-context">The authorization was consumed once. Replay rejection was not exercised in this run. Raw stdout was not retained; its deterministic reconstruction matched the broker byte count and digest.</p>
     </section>
 
-    <section class="proof" aria-label="Demonstrated Playground workflow">
-      <article><p class="number">01 / DISCOVER</p><h2>Open source enters as untrusted.</h2><p>A candidate capability can be inspected and described. Discovery alone grants no runtime authority.</p></article>
-      <article><p class="number">02 / PROVE</p><h2>Run the smallest useful canary.</h2><p>A root-owned broker accepts a signed, one-shot envelope and executes a pinned image inside a bounded profile.</p></article>
-      <article><p class="number">03 / DECIDE</p><h2>Evidence before adoption.</h2><p>Exit status, hashes, containment checks and replay rejection return to a human gate. Adoption remains a separate decision.</p></article>
+    <section id="workflow" class="proof workflow" aria-label="Demonstrated Playground workflow">
+      <article><p class="number">01 / DISCOVER</p><h2>Repository code enters untrusted.</h2><p>PROMETHEUS inspects candidate code and describes a capability without importing execution authority.</p></article>
+      <article><p class="number">02 / PROPOSE</p><h2>One useful question becomes one test.</h2><p>The capability, fixture, immutable image and expected result are sealed into a purpose-bound proposal.</p></article>
+      <article><p class="number">03 / APPROVE</p><h2>A human binds the exact run.</h2><p>A signed authorization names the request, expires, and allows a maximum of one execution.</p></article>
+      <article><p class="number">04 / EXECUTE</p><h2>The sandbox gets less authority.</h2><p>No network, no published port, no persistent volume, a read-only root filesystem and strict resource limits.</p></article>
+      <article><p class="number">05 / VERIFY</p><h2>Evidence returns, not trust.</h2><p>Exit status, byte counts, hashes, teardown and semantic reconstruction are checked fail-closed.</p></article>
+      <article><p class="number">06 / DECIDE</p><h2>Evaluation is not adoption.</h2><p>The experiment is GREEN. The capability remains NOT ADOPTED until a later human decision.</p></article>
+    </section>
+
+    <section id="baseline" class="demo baseline-demo" aria-labelledby="baseline-title">
+      <div class="section-head">
+        <div><p class="eyebrow proof-label">FOUNDATION PROOF · BROKER HEALTH</p><h2 id="baseline-title">The containment broker was proven first.</h2></div>
+        <span class="badge" id="baseline-evidence-result" aria-live="polite">VERIFYING BASELINE</span>
+      </div>
+      <p class="note baseline-intro">This earlier BusyBox canary separately demonstrated signed execution, exact replay rejection and teardown. It did not execute repository code.</p>
+      <div class="terminal" aria-label="Broker baseline evidence">
+        <ol id="baseline-event-stream">
+          <li><span>01</span><p>Loading baseline evidence…</p><b>WAIT</b></li>
+        </ol>
+      </div>
+      <div class="metrics" aria-label="Verified baseline metrics">
+        <article><span>IMMUTABLE IMAGE</span><strong id="baseline-image">—</strong></article>
+        <article><span>NETWORK</span><strong id="baseline-network">—</strong></article>
+        <article><span>EXIT CODE</span><strong id="baseline-exit-code">—</strong></article>
+        <article><span>LINGERING PROCESSES</span><strong id="baseline-processes">—</strong></article>
+      </div>
+      <p class="note">Baseline source manifest: <code id="baseline-evidence-hash">—</code></p>
     </section>
 
     <section id="boundary" class="architecture" aria-labelledby="boundary-title">
       <p class="eyebrow">THE GOVERNED BOUNDARY</p>
       <h2 id="boundary-title">Discovery is not authority.</h2>
-      <div class="flow"><span>Candidate capability</span><b aria-hidden="true">→</b><span>Local policy</span><b aria-hidden="true">→</b><span>Vultr sandbox</span><b aria-hidden="true">→</b><span>Human adoption gate</span></div>
-      <p>Vultr provides the isolated execution node and serverless inference. PROMETHEUS keeps policy, authorization and the final adoption decision outside the model.</p>
+      <div class="flow"><span>Candidate repository</span><b aria-hidden="true">→</b><span>Purpose-bound proposal</span><b aria-hidden="true">→</b><span>Human approval</span><b aria-hidden="true">→</b><span>Vultr sandbox</span><b aria-hidden="true">→</b><span>Evidence ledger</span></div>
+      <p>Vultr provides the isolated execution node and Serverless Inference. PROMETHEUS keeps policy, exact authorization and the final adoption decision outside the model.</p>
     </section>
 
     <section class="evidence-block" aria-labelledby="containment-title">
@@ -72,18 +96,19 @@
       <div class="containment-grid">
         <article><span class="status">BLOCKED</span><h3>No unrestricted network</h3><p>The canary ran with container networking set to none.</p></article>
         <article><span class="status">ABSENT</span><h3>No Docker authority for the agent</h3><p>PROMETHEUS is not in the Docker group. A root-owned broker enforces policy.</p></article>
-        <article><span class="status">REJECTED</span><h3>No reusable authorization</h3><p>The nonce was consumed once; the identical replay returned <code>AUTHORIZATION_REPLAY</code>.</p></article>
-        <article><span class="status">NOT RUN</span><h3>No repository code in this proof</h3><p>The first canary used a pinned BusyBox image. Candidate source execution remains separately governed.</p></article>
+        <article><span class="status">ONE SHOT</span><h3>No inherited execution authority</h3><p>V6 consumed one exact authorization. The separate baseline proof demonstrates replay rejection.</p></article>
+        <article><span class="status">NOT ADOPTED</span><h3>No automatic promotion</h3><p>Repository code earned an evaluated result, not installation or permanent trust.</p></article>
       </div>
     </section>
 
     <section class="details" aria-label="Prototype value and limits">
-      <article><h2>Why this matters</h2><p>Most agent demos optimize for what an agent can do. Playground demonstrates how an agent can learn a new capability while keeping the path to execution narrow, reviewable and reversible.</p><p>The business question is simple: can an organization let an agent experiment without silently expanding its authority?</p></article>
-      <article><h2>What this proof establishes</h2><p>A signed one-shot container canary completed on the Vultr node, its exact replay was denied and the post-run audit found no lingering canary process or public Docker listener.</p><p class="note">It does not yet claim automatic GitHub adoption, arbitrary repository execution or production readiness. Those remain behind later gates.</p></article>
+      <article><h2>Why this matters</h2><p>Most agent demos optimize for what an agent can do. Playground demonstrates how an agent can investigate a capability while keeping execution narrow, reviewable and reversible.</p><p>The business question is simple: can an organization let an agent experiment without silently expanding its authority?</p></article>
+      <article><h2>What this proof establishes</h2><p>One hash-bound repository fixture executed successfully inside a constrained Vultr container. Its result, containment and teardown were registered as auditable evidence.</p><p class="note">It does not establish safety for arbitrary repositories, automatic adoption or production readiness. Those remain behind later gates.</p></article>
     </section>
 
     <nav class="resources" aria-label="Project materials">
-      <a href="evidence/sandbox-canary-public-v1.json">Sanitized evidence · JSON ↗</a>
+      <a href="evidence/purpose-bound-experiment-public-v1.json">Repository experiment evidence · JSON ↗</a>
+      <a href="evidence/sandbox-canary-public-v1.json">Broker baseline evidence · JSON ↗</a>
       <a href="/forge/">PROMETHEUS Forge ↗</a>
       <a href="/voice/">PROMETHEUS Voice ↗</a>
     </nav>

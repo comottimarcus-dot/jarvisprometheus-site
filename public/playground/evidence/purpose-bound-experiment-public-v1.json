@@ -1,0 +1,61 @@
+{
+  "schema_version": "prometheus-playground-public-purpose-bound-evidence-v1",
+  "proof_id": "bf46b80aaa651f5cda78a9c8c4681a4953cf6ee9162b0526eb9be92d6de2c60a",
+  "result": "GREEN",
+  "claim": "One purpose-bound capability-discovery experiment completed inside an isolated Vultr container and returned hash-verifiable evidence without granting adoption authority.",
+  "experiment": {
+    "purpose": "capability_discovery_read_only",
+    "repository_code_executed": true,
+    "source_artifact_sha256": "54a2d25a01f15def097770c6bfcafc88db10d2ff69a0ae33582b962d3fc5ef75",
+    "immutable_image_digest": "sha256:061c190f3d5815b341a18dfe8a45771f8ba68c15a607ea56997fde3009ac4eec",
+    "exit_code": 0,
+    "timed_out": false,
+    "stdout_bytes": 436,
+    "stdout_sha256": "b85a71f5d7aea10d9e0e5fbd87da53f6e778c19fcf15801dc7f93efacf7eb849",
+    "stderr_bytes": 0
+  },
+  "authorization": {
+    "signed": true,
+    "maximum_execution_count": 1,
+    "consumed_count": 1,
+    "replay_attempted_in_this_run": false,
+    "replay_rejection_claimed_for_this_run": false
+  },
+  "containment": {
+    "network": "none",
+    "read_only_root_filesystem": true,
+    "non_root_runtime": true,
+    "capabilities_dropped": "ALL",
+    "no_new_privileges": true,
+    "pids_limit": 32,
+    "memory_mib": 128,
+    "cpu_limit": "0.50",
+    "wall_clock_seconds": 10,
+    "published_ports": false,
+    "persistent_volumes": false
+  },
+  "lifecycle": {
+    "running_containers_after_execution": 0,
+    "broker_health_after_execution": "GREEN",
+    "container_auto_removed": true
+  },
+  "governance": {
+    "evaluation_state": "EVALUATED_GREEN",
+    "adoption_state": "NOT_ADOPTED",
+    "automatic_adoption_permitted": false,
+    "human_adoption_decision_present": false
+  },
+  "evidence": {
+    "source_record_sha256": "5f31b78d86e0ccbb4804af4ddd97898924e1faada734eb7cc6f59ea4c5418d96",
+    "execution_attestation_sha256": "4af2743617b9257b8d81bc021ebe2c48060da0d6b3f5898872f81030e4e6052e",
+    "semantic_output_provenance": "deterministic_reconstruction_matching_broker_bytes_and_sha256"
+  },
+  "limitations": [
+    "Raw stdout was not retained.",
+    "Replay rejection was not exercised in this V6 run.",
+    "The result evaluates one bounded fixture and does not establish safety for arbitrary repositories.",
+    "The evaluated capability was not adopted or installed.",
+    "This artifact is evidence, not a live execution interface."
+  ],
+  "publication_state": "NOT_PUBLISHED"
+}
