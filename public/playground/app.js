@@ -21,6 +21,35 @@ function failClosed(elementId) {
   element.style.color = "var(--danger)";
 }
 
+async function loadPublicRepositoryBinding() {
+  try {
+    const response = await fetch("evidence/public-repository-binding-v1.json", {
+      cache: "no-store",
+      credentials: "omit",
+    });
+    if (!response.ok) throw new Error("public repository binding unavailable");
+    const evidence = await response.json();
+    if (
+      evidence.schema_version !== "prometheus-playground-public-repository-binding-v1" ||
+      evidence.result !== "GREEN" ||
+      evidence.binding_status !== "IMMUTABLY_BOUND" ||
+      evidence.execution_state !== "NOT_EXECUTED" ||
+      evidence.authority.execution_authorized !== false ||
+      evidence.authority.adoption_authorized !== false
+    ) {
+      throw new Error("unexpected public repository binding state");
+    }
+
+    byId("source-binding-result").textContent = "PUBLIC SOURCE · BOUND";
+    byId("source-binding-commit").textContent = shortDigest(evidence.repository.commit_sha);
+    byId("source-binding-digest").textContent = shortDigest(evidence.repository.source_sha256);
+    byId("source-binding-files").textContent = String(evidence.repository.source_file_count);
+    byId("source-binding-execution").textContent = evidence.execution_state.replace("_", " ");
+  } catch (_error) {
+    failClosed("source-binding-result");
+  }
+}
+
 async function loadPurposeBoundEvidence() {
   try {
     const response = await fetch("evidence/purpose-bound-experiment-public-v1.json", {
@@ -89,4 +118,8 @@ async function loadBaselineEvidence() {
   }
 }
 
-Promise.all([loadPurposeBoundEvidence(), loadBaselineEvidence()]);
+Promise.all([
+  loadPublicRepositoryBinding(),
+  loadPurposeBoundEvidence(),
+  loadBaselineEvidence(),
+]);
