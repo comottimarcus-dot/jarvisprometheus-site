@@ -42,7 +42,7 @@
 
   <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
     
-    <!-- TAB 1: PIPELINE -->
+    <!-- TAB 1: PIPELINE & HUMAN GATE -->
     <div id="view-pipeline" class="tab-content space-y-8">
       <div class="border border-slate-800 rounded-xl bg-slate-900/50 p-6 sm:p-8">
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -57,24 +57,93 @@
             <div><span class="text-slate-500 block text-[10px]">Inference Cost</span><span class="text-slate-200">$0.000259/run</span></div>
             <div><span class="text-slate-500 block text-[10px]">Broker Socket</span><span class="text-emerald-400">0660 root:prometheus</span></div>
             <div><span class="text-slate-500 block text-[10px]">Active Containers</span><span class="text-cyan-400">0 (Idle Zero)</span></div>
-            <div><span class="text-slate-500 block text-[10px]">Human Gate</span><span class="text-emerald-400 font-bold">DISARMED (Fail-Closed)</span></div>
+            <div><span class="text-slate-500 block text-[10px]">Human Gate</span><span id="telemetry-gate" class="text-amber-400 font-bold">DISARMED (Fail-Closed)</span></div>
+          </div>
+        </div>
+
+        <!-- 5-Stage Stepper Ribbon -->
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-5 gap-2 border-t border-slate-800/80 pt-6 font-mono text-xs">
+          <div class="p-3 rounded-lg border border-slate-800 bg-slate-950/60">
+            <div class="flex justify-between text-slate-500 mb-1"><span>STAGE 01</span><span class="text-emerald-400 font-bold">✓ INTAKE</span></div>
+            <div class="font-bold text-slate-200 text-xs">Subtree Isolation</div>
+            <div class="text-[10px] text-slate-400">Read-only AST parser</div>
+          </div>
+          <div class="p-3 rounded-lg border border-slate-800 bg-slate-950/60">
+            <div class="flex justify-between text-slate-500 mb-1"><span>STAGE 02</span><span class="text-cyan-400 font-bold">✓ VULTR AI</span></div>
+            <div class="font-bold text-slate-200 text-xs">Serverless Discovery</div>
+            <div class="text-[10px] text-slate-400">$0.000259 / execution</div>
+          </div>
+          <div id="ribbon-gate-card" class="p-3 rounded-lg border border-amber-500/50 bg-amber-950/20">
+            <div class="flex justify-between text-slate-500 mb-1"><span>STAGE 03</span><span id="ribbon-gate-status" class="text-amber-400 font-bold">🔒 DISARMED</span></div>
+            <div class="font-bold text-slate-200 text-xs">Human Auth Gate</div>
+            <div class="text-[10px] text-slate-400">Fail-closed boundary</div>
+          </div>
+          <div class="p-3 rounded-lg border border-slate-800 bg-slate-950/60">
+            <div class="flex justify-between text-slate-500 mb-1"><span>STAGE 04</span><span class="text-slate-400 font-bold">⚡ JAIL</span></div>
+            <div class="font-bold text-slate-200 text-xs">Ephemeral Sandbox</div>
+            <div class="text-[10px] text-slate-400">net=none, ro-mount</div>
+          </div>
+          <div class="p-3 rounded-lg border border-slate-800 bg-slate-950/60">
+            <div class="flex justify-between text-slate-500 mb-1"><span>STAGE 05</span><span class="text-emerald-400 font-bold">✓ SEALED</span></div>
+            <div class="font-bold text-slate-200 text-xs">SHA-256 Proofs</div>
+            <div class="text-[10px] text-slate-400">Audit manifest committed</div>
           </div>
         </div>
       </div>
 
-      <!-- Attack Simulator Box -->
+      <!-- STAGE 03: HUMAN AUTHORIZATION GATE INTERACTIVE CONTROLLER -->
+      <div class="border border-amber-500/40 rounded-xl bg-slate-950 p-6 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-xs font-bold">STAGE 03 · CORE SECURITY GATE</span>
+              <span class="text-xs font-mono text-slate-400">Fail-Closed Enforcement</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Human Authorization Gate Simulation</h3>
+            <p class="text-xs text-slate-400 max-w-2xl leading-relaxed">
+              By default, all candidate code is in state <code class="text-amber-300 font-mono bg-amber-950/40 px-1 py-0.5 rounded">DISARMED_NOT_EXECUTED</code>. The root sandbox broker will strictly reject execution requests until an operator grants explicit cryptographic approval.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3 shrink-0">
+            <button onclick="toggleHumanGate()" id="human-gate-btn" class="px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors flex items-center gap-2 shadow-sm">
+              <span>✍️</span>
+              <span id="human-gate-btn-text">Simulate Human Authorization</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 rounded-lg bg-slate-900/60 border border-slate-800 font-mono text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-slate-400">Current Execution Gate Status:</span>
+            <span id="gate-state-pill" class="px-2.5 py-1 rounded bg-amber-950/80 border border-amber-500/40 text-amber-300 font-bold">
+              FAIL-CLOSED (Execution Disarmed)
+            </span>
+          </div>
+          <div class="text-slate-400 text-[11px]">
+            Thesis: <strong class="text-emerald-400">"Discovery is not authority."</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Adversarial Containment Simulator Box -->
       <div class="border border-slate-800 rounded-xl bg-slate-900/60 p-6 space-y-4">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
           <div>
             <h3 class="font-bold text-slate-100 text-base flex items-center gap-2"><span>🛡️</span> Adversarial Containment Simulator</h3>
             <p class="text-xs text-slate-400">Trigger a simulated supply-chain attack package attempting reverse-shell network egress and rootfs tampering.</p>
           </div>
-          <button onclick="runAttackSimulation()" id="sim-btn" class="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold text-xs transition-colors shrink-0">
-            ⚠️ Run Attack Simulation
-          </button>
+          <div class="flex items-center gap-2">
+            <button onclick="resetAttackSimulation()" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium text-xs transition-colors">
+              Reset
+            </button>
+            <button onclick="runAttackSimulation()" id="sim-btn" class="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold text-xs transition-colors shrink-0">
+              ⚠️ Run Attack Simulation
+            </button>
+          </div>
         </div>
-        <div id="sim-terminal" class="p-4 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-400 space-y-1">
-          <div class="text-slate-500">// Terminal standby. Click button above to execute adversarial containment test.</div>
+        <div id="sim-terminal" class="p-4 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-400 space-y-1 min-h-[140px]">
+          <div class="text-slate-500">// Terminal standby. Gate status: DISARMED. Click "Run Attack Simulation" to test containment.</div>
         </div>
       </div>
     </div>
@@ -275,7 +344,7 @@
               <span>[0:23 - 0:47] Scene 2: Vultr Native Architecture</span>
               <span class="text-slate-500 text-[10px]">24s</span>
             </div>
-            <p class="text-slate-300 leading-relaxed italic">"Let'''s look at the four-layer architecture. Deployed on a Vultr Cloud Compute instance in São Paulo, the host operates with zero public listening TCP ports. Untrusted code discovery is completely decoupled from execution, routed through Vultr Serverless Inference at just a fraction of a cent per run. The host interacts solely through a local Unix domain socket with strict root permissions."</p>
+            <p class="text-slate-300 leading-relaxed italic">"Let's look at the four-layer architecture. Deployed on a Vultr Cloud Compute instance in São Paulo, the host operates with zero public listening TCP ports. Untrusted code discovery is completely decoupled from execution, routed through Vultr Serverless Inference at just a fraction of a cent per run. The host interacts solely through a local Unix domain socket with strict root permissions."</p>
           </div>
 
           <div class="p-3.5 rounded bg-slate-900/60 border border-slate-800 space-y-1.5">
@@ -283,7 +352,7 @@
               <span>[0:47 - 1:13] Scene 3: The Containment Moment</span>
               <span class="text-slate-500 text-[10px]">25s</span>
             </div>
-            <p class="text-slate-300 leading-relaxed italic">"Here is the interactive containment pipeline. At Stage Zero Three, the Human Authorization Gate enforces a disarmed state by default. Now, let'''s observe a containment moment. When a simulated compromised package attempts unauthorized network egress and file tampering, the sandbox broker traps the violation instantly, quarantining the ephemeral container and leaving the Vultr host completely intact."</p>
+            <p class="text-slate-300 leading-relaxed italic">"Here is the interactive containment pipeline. At Stage Zero Three, the Human Authorization Gate enforces a disarmed state by default. Now, let's observe a containment moment. When a simulated compromised package attempts unauthorized network egress and file tampering, the sandbox broker traps the violation instantly, quarantining the ephemeral container and leaving the Vultr host completely intact."</p>
           </div>
 
           <div class="p-3.5 rounded bg-slate-900/60 border border-slate-800 space-y-1.5">
@@ -359,6 +428,8 @@ Our thesis: discovery is not authority. PROMETHEUS turns agent containment into 
   </footer>
 
   <script>
+    let isHumanAuthorized = false;
+
     function setTab(tabId) {
       document.querySelectorAll(".tab-content").forEach(el => el.classList.add("hidden"));
       document.querySelectorAll(".tab-btn").forEach(btn => {
@@ -374,10 +445,55 @@ Our thesis: discovery is not authority. PROMETHEUS turns agent containment into 
       }
     }
 
+    function toggleHumanGate() {
+      isHumanAuthorized = !isHumanAuthorized;
+      const pill = document.getElementById("gate-state-pill");
+      const btnText = document.getElementById("human-gate-btn-text");
+      const btn = document.getElementById("human-gate-btn");
+      const ribbonStatus = document.getElementById("ribbon-gate-status");
+      const ribbonCard = document.getElementById("ribbon-gate-card");
+      const telemetryGate = document.getElementById("telemetry-gate");
+      const term = document.getElementById("sim-terminal");
+
+      if (isHumanAuthorized) {
+        pill.className = "px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold";
+        pill.innerText = "AUTHORIZED (Testing Sandbox Envelope Open)";
+        btnText.innerText = "Revoke Authorization (Disarm)";
+        btn.className = "px-4 py-2 rounded-lg bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs transition-colors flex items-center gap-2 shadow-sm";
+        ribbonStatus.className = "text-emerald-400 font-bold";
+        ribbonStatus.innerText = "🔓 AUTHORIZED";
+        ribbonCard.className = "p-3 rounded-lg border border-emerald-500/50 bg-emerald-950/30";
+        telemetryGate.className = "text-emerald-400 font-bold";
+        telemetryGate.innerText = "AUTHORIZED (Envelope Open)";
+        term.innerHTML = `<div class="text-emerald-400 font-bold">[GATE STATE CHANGED] Operator signature verified. Stage 03 is now AUTHORIZED. Ready to test containment.</div>`;
+      } else {
+        pill.className = "px-2.5 py-1 rounded bg-amber-950/80 border border-amber-500/40 text-amber-300 font-bold";
+        pill.innerText = "FAIL-CLOSED (Execution Disarmed)";
+        btnText.innerText = "Simulate Human Authorization";
+        btn.className = "px-4 py-2 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors flex items-center gap-2 shadow-sm";
+        ribbonStatus.className = "text-amber-400 font-bold";
+        ribbonStatus.innerText = "🔒 DISARMED";
+        ribbonCard.className = "p-3 rounded-lg border border-amber-500/50 bg-amber-950/20";
+        telemetryGate.className = "text-amber-400 font-bold";
+        telemetryGate.innerText = "DISARMED (Fail-Closed)";
+        term.innerHTML = `<div class="text-amber-400 font-bold">[GATE STATE CHANGED] Cryptographic token revoked. Stage 03 is FAIL-CLOSED (Disarmed).</div>`;
+      }
+    }
+
     function runAttackSimulation() {
       const term = document.getElementById("sim-terminal");
+      if (!isHumanAuthorized) {
+        term.innerHTML = `
+          <div class="text-amber-400 font-bold">[SECURITY INTERCEPT] Stage 03 Human Authorization Gate is currently DISARMED!</div>
+          <div class="text-slate-400">[ROOT BROKER] Received candidate code execution request... DENIED.</div>
+          <div class="text-amber-300 font-bold">[FAIL-CLOSED PRESERVED] 0 containers spawned. Host execution mathematically locked without operator signature.</div>
+          <div class="text-slate-500 mt-2">// Click "Simulate Human Authorization" above if you wish to arm the ephemeral test sandbox.</div>
+        `;
+        return;
+      }
+
       term.innerHTML = `
-        <div class="text-amber-400 font-bold">[ATTACK INITIALIZED] Candidate package "supply-chain-evil-v1" injected.</div>
+        <div class="text-amber-400 font-bold">[ATTACK INITIALIZED] Authorized test container spawned: payload "supply-chain-evil-v1".</div>
         <div class="text-red-400">[ATTACK EXEC] Attempting outbound reverse TCP shell to 198.51.100.23:4444...</div>
         <div class="text-emerald-400 font-bold">[INTERCEPTED] Broker socket trap triggered: syscall socket(AF_INET, SOCK_STREAM) DENIED.</div>
         <div class="text-red-400">[ATTACK EXEC] Attempting rm -rf /etc/shadow /data...</div>
@@ -385,6 +501,11 @@ Our thesis: discovery is not authority. PROMETHEUS turns agent containment into 
         <div class="text-cyan-400 font-bold">[CONTAINMENT] Container terminated (SIGKILL). Ephemeral micro-sandbox destroyed.</div>
         <div class="text-emerald-300 pt-1 border-t border-slate-800 font-bold">✓ HOST STATUS: 0 files modified · 0 bytes leaked · Host filesystem 100% intact.</div>
       `;
+    }
+
+    function resetAttackSimulation() {
+      const term = document.getElementById("sim-terminal");
+      term.innerHTML = `<div class="text-slate-500">// Terminal standby. Gate status: ${isHumanAuthorized ? "AUTHORIZED" : "DISARMED"}. Click "Run Attack Simulation" to test containment.</div>`;
     }
 
     function copySubmissionMarkdown() {
